@@ -9,6 +9,7 @@ function App() {
     <table>
       <Boxes />
       <Boxes />
+      <Boxes />
     </table>
   );
 }
