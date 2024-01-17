@@ -18,12 +18,6 @@ function App() {
         <Boxes />
         <Boxes />
       </table>
-
-      <table>
-        <Boxes />
-        <Boxes />
-        <Boxes />
-      </table>
     </>
   );
 }
