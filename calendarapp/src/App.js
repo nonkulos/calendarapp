@@ -6,12 +6,25 @@ const Boxes = () => {
 
 function App() {
   return (
-    <table>
-      <Boxes />
-      <Boxes />
-      <Boxes />
-      <Boxes />
-    </table>
+    <>
+      <table>
+        <Boxes />
+        <Boxes />
+        <Boxes />
+      </table>
+
+      <table>
+        <Boxes />
+        <Boxes />
+        <Boxes />
+      </table>
+
+      <table>
+        <Boxes />
+        <Boxes />
+        <Boxes />
+      </table>
+    </>
   );
 }
 
