@@ -9,7 +9,11 @@ const Boxes = ({number}) => {
 function calcNum(number) {
   const rows = [];
   for(let i = 0; i < 7; i++) {
-    rows.push(number + i)
+    if(number + i < 32){
+      rows.push(number + i)
+    } else {
+      rows.push("")
+    }
   }
   return rows
 }
@@ -17,12 +21,11 @@ function calcNum(number) {
 function App() {
   return (
     <table>
-      <tr>
         <Boxes number = {1} />
-      </tr>
-      <tr>
         <Boxes number = {8} />
-      </tr>
+        <Boxes number = {15} />
+        <Boxes number = {22} />
+        <Boxes number = {29} />
     </table>
   );
 }
