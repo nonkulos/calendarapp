@@ -1,4 +1,5 @@
 import './App.css';
+import calcNum from "./getdates.js"
 
 const Boxes = ({number}) => {
   const rows = calcNum(number)
@@ -6,19 +7,7 @@ const Boxes = ({number}) => {
   return <tr>{days}</tr>;
 }
 
-function calcNum(number) {
-  const rows = [];
-  for(let i = 0; i < 7; i++) {
-    if(number + i < 32){
-      rows.push(number + i)
-    } else {
-      rows.push("")
-    }
-  }
-  return rows
-}
-
-function App() {
+const App = () => {
   return (
     <table>
         <Boxes number = {1} />
