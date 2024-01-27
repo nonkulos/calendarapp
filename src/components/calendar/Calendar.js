@@ -1,5 +1,5 @@
-import './App.css';
-import calcNum from "./getdates.js"
+import './Calendar.css';
+import calcNum from "./Getdates.js"
 
 const Calendar = () => {
   const rows = calcNum()
