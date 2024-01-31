@@ -1,8 +1,7 @@
-const calcNum = () => {
+const calcNum = (year, month) => {
   const numweeks = 6
   const numdays = 7
-  let day = new Date();
-  day.setDate(0)
+  let day = new Date(year, month);
   day.setDate(1)
   day.setDate(day.getDate() - day.getDay() - 1);
   let week = [[], [], [], [], [], []];
