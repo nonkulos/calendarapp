@@ -1,10 +1,14 @@
 import Buttons from './components/calendar/adjMonth';
+import SettingButton from './components/settings/settingsStuff'
+import NewEventButton from './components/addEvent/newEventButton'
 
 const App = () => {
     return (
-        <div>
+        <>
             <Buttons />
-        </div>
+            <NewEventButton />
+            <SettingButton />
+        </>
     )
 }
 
