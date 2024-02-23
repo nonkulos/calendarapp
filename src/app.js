@@ -1,13 +1,19 @@
 import Buttons from './components/calendar/adjMonth';
-import SettingButton from './components/settings/settingsStuff'
-import NewEventButton from './components/addEvent/newEventButton'
+import Sidebar from './components/sidebar/sidebar';
+import Bar from './components/topBar/barContents';
 
 const App = () => {
     return (
         <>
-            <Buttons />
-            <NewEventButton />
-            <SettingButton />
+            <div class="topbar">
+                <Bar />
+            </div>
+                <div class="sidebar">
+                    <Sidebar />
+                </div>
+                <div class="main-content text-center">
+                    <Buttons />
+                </div>
         </>
     )
 }

@@ -5,17 +5,18 @@ import './Calendar.css'
 const Buttons = () => {
     const [currMonth, setCurrMonth] = useState(0)
 
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    let day = new Date();
+    const day = new Date();
     day.setMonth(day.getMonth() + currMonth, 15)
     const rows = calcNum(day.getFullYear(), day.getMonth())
 
     return (
         <>
-            <p>{`${months[day.getMonth()]} ${day.getFullYear()}`}</p>
+            <p>{day.toLocaleString('en-US', {month: "long", year: "numeric"})}</p>
             <table>{rows}</table>
-            <button onClick = {() => setCurrMonth(currMonth - 1)}>Prev Month</button>
-            <button onClick = {() => setCurrMonth(currMonth + 1)}>Next Month</button>
+            <div className = "row">
+                <button onClick = {() => setCurrMonth(currMonth - 1)} className = "prevM">Prev Month</button>
+                <button onClick = {() => setCurrMonth(currMonth + 1)} className = "nextM">Next Month</button>
+            </div> 
         </>
     )
 }

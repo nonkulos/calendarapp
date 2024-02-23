@@ -1,0 +1,52 @@
+$colorPurple: #A020F0;
+$colorRed: #FF0000;
+$colorBlue: #0000FF;
+
+.topbar {
+    text-align: center;
+    background-color: $colorPurple;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 10%;
+}
+
+.sidebar {
+    background-color: $colorRed;
+    position: absolute;
+    left: 0;
+    top: 10%;
+    width: 5%;
+    height: 90%;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    background-color: $colorBlue;
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    width: 95%;
+    height: 90%;
+    align-items: center;
+    justify-items: center;  
+    text-align: center;
+    
+    table {
+        display: inline-table;
+        border-collapse: collapse;
+        max-height: 100vh;
+        td {
+            background-color: aqua;
+            $length: calc(90vh * (0.9 / 7));
+            height: $length;
+            width: $length;
+        };
+    };
+    .row {
+        display: flex;
+        column-gap: calc(90vh * (0.9 / 7));
+    }
+};
