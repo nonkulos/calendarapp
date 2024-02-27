@@ -1,6 +1,7 @@
 $colorPurple: #A020F0;
 $colorRed: #FF0000;
 $colorBlue: #0000FF;
+$colorOrange: #FFA500;
 
 .topbar {
     text-align: center;
@@ -84,7 +85,13 @@ $colorBlue: #0000FF;
             $length: calc(90vh * (0.9 / 7));
             height: $length;
             width: $length;
+            border: 1px solid;
         };
+        .tableHeader{
+            background-color: $colorOrange;
+            $length: calc(90vh * (0.9 / 7));
+            height: $length/2;
+        }
     };
     .row {
         display: flex;

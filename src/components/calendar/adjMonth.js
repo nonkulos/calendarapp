@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import calcNum from './Getdates';
-import './Calendar.css';
 import backArrow from '../images/backArrow.png';
 import forwardArrow from '../images/forwardArrow.png'
 

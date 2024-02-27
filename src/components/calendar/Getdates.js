@@ -9,8 +9,10 @@ const calcNum = (year, month) => {
         return <td>{day.getDate()}</td>
       })
   )
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return (
     <table>
+      <tr>{weekdays.map((week, i) => <td key={i} className="tableHeader">{week}</td>)}</tr>
       {weeks.map((week, i) => <tr key={i}>{week}</tr>)}
     </table>);
 }

@@ -80,6 +80,11 @@
   background-color: aqua;
   height: 11.5714285714vh;
   width: 11.5714285714vh;
+  border: 1px solid;
+}
+.main-content table .tableHeader {
+  background-color: #FFA500;
+  height: 5.7857142857vh;
 }
 .main-content .row {
   display: flex;
