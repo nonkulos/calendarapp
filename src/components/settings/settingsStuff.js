@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from 'react';
-import Form from './settingsForm'
+import Form from './settingsForm';
+import settingsButton from "../images/settingsButton.png";
 
 const SettingButton = () => {
     const [clicked, setClicked] = useState(false)
 
     return (
         <>
-            <button onClick = {() => setClicked(!clicked)}>{clicked ? "Close Settings" : "Settings"}</button>
+            <img src={settingsButton} alt = "Settings Button" className = "sidebar settingsButtonImg"/>
+            <button onClick = {() => setClicked(!clicked)} className = "sidebar settingsButton">{clicked ? "Close Settings" : "Settings"}</button>
             {clicked ? (<Form />) : (null)}
         </>
     )

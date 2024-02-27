@@ -8,17 +8,58 @@ $colorBlue: #0000FF;
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 10%;
+    width: 100vw;
+    height: 10vh;
 }
 
 .sidebar {
+    display: flex;
+    flex-direction: column;
     background-color: $colorRed;
     position: absolute;
     left: 0;
-    top: 10%;
-    width: 5%;
-    height: 90%;
+    top: 10vh;
+    width: 5vw;
+    height: 90vh;
+    z-index: 0;
+    .settingsButton{
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0%;
+        z-index: 2;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+    }
+    .settingsButtonImg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+    }
+    .eventButton{
+        position: absolute;
+        left: 0;
+        top: 10vh;
+        z-index: 2;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+        opacity: 0%;
+    }
+    .eventButtonImg{
+        position: absolute;
+        left: 0;
+        top: 10vh;
+        z-index: 1;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+    }
 }
 
 .main-content {
@@ -26,10 +67,10 @@ $colorBlue: #0000FF;
     flex-direction: column;
     background-color: $colorBlue;
     position: absolute;
-    left: 5%;
-    top: 10%;
-    width: 95%;
-    height: 90%;
+    left: 5vw;
+    top: 10vh;
+    width: 95vw;
+    height: 90vh;
     align-items: center;
     justify-items: center;  
     text-align: center;
@@ -48,5 +89,44 @@ $colorBlue: #0000FF;
     .row {
         display: flex;
         column-gap: calc(90vh * (0.9 / 7));
+        margin: 2%;
+    }
+    .prevMButton{
+        position: absolute;
+        left: 0%;
+        top: 15vh;
+        z-index: 2;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+        opacity: 0%;
+    }
+    .prevMImg{
+        position: absolute;
+        left: 0%;
+        top: 15vh;
+        z-index: 1;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+    }
+    .nextMButton{
+        position: absolute;
+        right: 0;
+        top: 15vh;
+        z-index: 2;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
+        opacity: 0%;
+    }
+    .nextMImg{
+        position: absolute;
+        right: 0;
+        top: 15vh;
+        z-index: 1;
+        margin: 10%;
+        width: (5vw * 0.8);
+        height: (5vw * 0.8);
     }
 };

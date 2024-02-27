@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import calcNum from './Getdates';
-import './Calendar.css'
+import './Calendar.css';
+import backArrow from '../images/backArrow.png';
+import forwardArrow from '../images/forwardArrow.png'
 
 const Buttons = () => {
     const [currMonth, setCurrMonth] = useState(0)
@@ -14,8 +16,10 @@ const Buttons = () => {
             <p>{day.toLocaleString('en-US', {month: "long", year: "numeric"})}</p>
             <table>{rows}</table>
             <div className = "row">
-                <button onClick = {() => setCurrMonth(currMonth - 1)} className = "prevM">Prev Month</button>
-                <button onClick = {() => setCurrMonth(currMonth + 1)} className = "nextM">Next Month</button>
+                <img src={backArrow} alt = "Previous Month" className = "prevMImg" />
+                <button onClick = {() => setCurrMonth(currMonth - 1)} className = "prevMButton">Prev Month</button>
+                <img src={forwardArrow} alt = "Next Month" className = "nextMImg" />
+                <button onClick = {() => setCurrMonth(currMonth + 1)} className = "nextMButton">Next Month</button>
             </div> 
         </>
     )
