@@ -90,7 +90,7 @@ $colorOrange: #FFA500;
         .tableHeader{
             background-color: $colorOrange;
             $length: calc(90vh * (0.9 / 7));
-            height: $length/2;
+            height: calc($length/2);
         }
     };
     .row {
