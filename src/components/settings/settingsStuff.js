@@ -9,7 +9,7 @@ const SettingButton = () => {
     return (
         <>
             <img src={settingsButton} alt = "Settings Button" className = "sidebar settingsButtonImg"/>
-            <button onClick = {() => setClicked(!clicked)} className = "sidebar settingsButton">{clicked ? "Close Settings" : "Settings"}</button>
+            <button onClick = {() => setClicked(!clicked)} className = "sidebar settingsButton"></button>
             {clicked ? (<Form />) : (null)}
         </>
     )

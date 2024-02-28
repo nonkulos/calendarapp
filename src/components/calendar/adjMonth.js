@@ -16,9 +16,9 @@ const Buttons = () => {
             <table>{rows}</table>
             <div className = "row">
                 <img src={backArrow} alt = "Previous Month" className = "prevMImg" />
-                <button onClick = {() => setCurrMonth(currMonth - 1)} className = "prevMButton">Prev Month</button>
+                <button onClick = {() => setCurrMonth(currMonth - 1)} className = "prevMButton"></button>
                 <img src={forwardArrow} alt = "Next Month" className = "nextMImg" />
-                <button onClick = {() => setCurrMonth(currMonth + 1)} className = "nextMButton">Next Month</button>
+                <button onClick = {() => setCurrMonth(currMonth + 1)} className = "nextMButton"></button>
             </div> 
         </>
     )
