@@ -1,16 +1,16 @@
 import React from "react";
-import { useState } from 'react';
-import Form from './settingsForm';
 import settingsButton from "../images/settingsButton.png";
+import toggleWidebar from "../../style-stuff/logic/toggleWidebar";
+
+const toggleSettings = () => {
+    toggleWidebar("settings");
+}
 
 const SettingButton = () => {
-    const [clicked, setClicked] = useState(false)
-
     return (
         <>
             <img src={settingsButton} alt = "Settings Button" className = "sidebar settingsButtonImg"/>
-            <button onClick = {() => setClicked(!clicked)} className = "sidebar settingsButton"></button>
-            {clicked ? (<Form />) : (null)}
+            <button onClick={toggleSettings} id = "settingsBtn" className = "sidebar settingsButton"></button>
         </>
     )
 }

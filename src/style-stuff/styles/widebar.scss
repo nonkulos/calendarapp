@@ -1,0 +1,40 @@
+@keyframes slidein {
+    0% {
+        transform: translateX(0vw);
+        z-index: -10;
+    }
+    100% {
+        transform: translateX(15vw);
+        z-index: -10;
+    }
+}
+@keyframes slideout {
+    0% {
+        transform: translateX(15vw);
+        z-index: -10;
+    }
+    100% {
+        transform: translateX(0vw);
+        z-index: -10;
+    }
+}
+
+.widebar {
+    position: fixed;
+    z-index: -10;
+    left: -10vw;
+    top: 0;
+    width: 15vw;
+    height: 100vh;
+    background-color: #8bd39b;
+};
+
+.expand-widebar {
+    animation: 0.5s normal 0s slidein;
+    transform: translateX(15vw);
+    z-index: -10;
+}
+
+.reduce-widebar {
+    animation: 0.5s normal 0s slideout;
+}

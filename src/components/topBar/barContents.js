@@ -1,6 +1,6 @@
 const Bar = () => {
     return (
-        <h1 class="color-purple text-center">Calendar App</h1>
+        <h1>Calendar App</h1>
     )
 }
 

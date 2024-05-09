@@ -1,0 +1,63 @@
+.sidebar {
+    background-color: #8bd39b;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5vw;
+    height: 100vh;
+    z-index: 10;
+    .settingsButton{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 5vw;
+        background-color: #000000;
+        cursor: pointer;
+        opacity: 0%;
+        transition: opacity 0.15s;
+    }
+    .settingsButton:hover{
+        opacity: 15%;
+    }
+    .settingsButton:active{
+        opacity: 30%;
+   }
+    .settingsButtonImg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        margin: 10%;
+        width: 4vw;
+        height: 4vw;
+    }
+    .eventButton{
+        position: absolute;
+        left: 0;
+        top: 5vw;
+        z-index: 2;
+        width: 100%;
+        height: 5vw;
+        background-color: #000000;
+        cursor: pointer;
+        opacity: 0%;
+        transition: opacity 0.2s;
+    }
+    .eventButton:hover{
+        opacity: 15%;
+    }
+    .eventButton:active{
+        opacity: 30%;
+   }
+    .eventButtonImg{
+        position: absolute;
+        left: 0;
+        top: 5vw;
+        z-index: 1;
+        margin: 10%;
+        width: 4vw;
+        height: 4vw;
+    }
+}

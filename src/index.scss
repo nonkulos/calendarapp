@@ -1,178 +1,38 @@
-$colorPurple: #A020F0;
-$colorRed: #FF0000;
-$colorBlue: #0000FF;
-$colorOrange: #FFA500;
+@use "./style-stuff/styles/main-content.scss";
+@use "./style-stuff/styles/sidebar.scss";
+@use "./style-stuff/styles/topbar.scss";
+@use "./style-stuff/styles/widebar.scss";
+@use "./style-stuff/styles/fontStuff.scss";
+
+html {
+    font-family: "Kanit";
+}
 
 button{
     border: 0px;
 }
-.topbar {
-    text-align: center;
-    background-color: $colorPurple;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 10vh;
-}
 
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    background-color: $colorRed;
-    position: absolute;
-    left: 0;
-    top: 10vh;
-    width: 5vw;
-    height: 90vh;
-    z-index: 0;
-    .settingsButton{
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 2;
-        width: 100%;
-        height: 5vw;
-        background-color: #000000;
-        cursor: pointer;
-        opacity: 0%;
-        transition: opacity 0.15s;
-    }
-    .settingsButton:hover{
-        opacity: 15%;
-    }
-    .settingsButton:active{
-        opacity: 30%;
-   }
-    .settingsButtonImg{
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1;
-        margin: 10%;
-        width: 4vw;
-        height: 4vw;
-    }
-    .eventButton{
-        position: absolute;
-        left: 0;
-        top: 5vw;
-        z-index: 2;
-        width: 100%;
-        height: 5vw;
-        background-color: #000000;
-        cursor: pointer;
-        opacity: 0%;
-        transition: opacity 0.2s;
-    }
-    .eventButton:hover{
-        opacity: 15%;
-    }
-    .eventButton:active{
-        opacity: 30%;
-   }
-    .eventButtonImg{
-        position: absolute;
-        left: 0;
-        top: 5vw;
-        z-index: 1;
-        margin: 10%;
-        width: 4vw;
-        height: 4vw;
-    }
-}
-
-.main-content {
-    display: flex;
-    flex-direction: column;
-    background-color: $colorBlue;
-    position: absolute;
-    left: 5vw;
-    top: 10vh;
-    width: 95vw;
-    height: 90vh;
-    align-items: center;
-    justify-items: center;  
-    text-align: center;
-    
-    table {
-        display: inline-table;
-        border-collapse: collapse;
-        max-height: 100vh;
-        td {
-            background-color: aqua;
-            $length: calc(90vh * (0.9 / 7));
-            height: $length;
-            width: $length;
-            border: 1px solid;
-        };
-        .tableHeader{
-            background-color: $colorOrange;
-            $length: calc(90vh * (0.9 / 7));
-            height: calc($length/2);
-        }
+table {
+    display: table;
+    border-spacing: 0;
+    border-collapse: seperate;
+    border-radius: 30px;
+    td {
+        background-color: #8bd39b;
+        border: 1px solid black;
+        $length: calc(90vh * (0.9 / 7));
+        height: $length;
+        width: $length;
     };
-    .row {
-        display: flex;
-        column-gap: calc(90vh * (0.9 / 7));
-        margin: 2%;
-    }
-    .prevMButton{
-        position: absolute;
-        left: -0.5vw;
-        top: 13vh;
-        z-index: 2;
-        margin: 10%;
-        width: 6vw;
-        height: 6vw;
-        background-color: #000000;
-        opacity: 0%;
-        border-radius: 100%;
-        cursor: pointer;
-        transition: opacity 0.2s;
-    }
-    .prevMButton:hover {
-        opacity: 15%;
-    }
-    .prevMButton:active{
-        opacity: 30%;
-   }
-    .prevMImg{
-        position: absolute;
-        left: 0%;
-        top: 15vh;
-        z-index: 1;
-        margin: 10%;
-        width: 4vw;
-        height: 4vw;
-    }
-    .nextMButton{
-        position: absolute;
-        right: -0.5vw;
-        top: 13vh;
-        z-index: 2;
-        margin: 10%;
-        width: 6vw;
-        height: 6vw;
-        background-color: #000000;
-        opacity: 0%;
-        border-radius: 100%;
-        cursor: pointer;
-        transition: opacity 0.1s;
-    }
-    .nextMButton:hover {
-        opacity: 15%;
-    }
-    .nextMButton:active{
-        opacity: 30%;
-   }
-    .nextMImg{
-        position: absolute;
-        right: 0;
-        top: 15vh;
-        z-index: 1;
-        margin: 10%;
-        width: 4vw;
-        height: 4vw;
-    }
+    .tableHeader{
+        background-color: #b8e0c4;
+        $length: calc(90vh * (0.9 / 7));
+        height: calc($length/2);
+    } 
 };
+
+tr:first-child td:first-child { border-top-left-radius: 30px; }
+tr:first-child td:last-child { border-top-right-radius: 30px; }
+
+tr:last-child td:first-child { border-bottom-left-radius: 30px; }
+tr:last-child td:last-child { border-bottom-right-radius: 30px; }

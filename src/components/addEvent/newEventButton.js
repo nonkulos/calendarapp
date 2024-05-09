@@ -1,16 +1,17 @@
 import React from "react";
-import { useState } from 'react';
-import Form from "./newEventForm";
-import newEventButton from "../images/newEventButton.png"
+import newEventButton from "../images/newEventButton.png";
+import toggleWidebar from "../../style-stuff/logic/toggleWidebar";
 
 const NewEventButton = () => {
-    const [clicked, setClicked] = useState(false)
+
+    const toggleNewEvent = () => {
+        toggleWidebar("newevent");
+    }
 
     return (
         <>
             <img src={newEventButton} alt = "Add New Event" className = "sidebar eventButtonImg"/>
-            <button onClick={() => {setClicked(!clicked)}} className = "sidebar eventButton"></button>
-            {clicked ? (<Form />) : (null)}
+            <button onClick={toggleNewEvent} id = "addBtn" className = "sidebar eventButton"></button>
         </>
     )
 }

@@ -1,15 +1,17 @@
-const Form = () => {    
+const SettingsForm = () => {    
     return (
-        <form>
+        <form id = "settings">
             <p> Select Theme: </p>
             <input id = "lightTheme" type="radio" />
             <label for = "lightTheme">Light Theme</label>
+            <br />
             <input id = "darkTheme" type="radio" />
             <label for = "darkTheme">Dark Theme</label>
 
             <p>Receive Notifications From: </p>
             <input id = "e-mail" type = "checkbox" />
             <label for = "e-mail">E-Mail</label>
+            <br />
             <input id = "text" type = "checkbox" />
             <label for = "text">Text</label>
 
@@ -21,4 +23,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default SettingsForm

@@ -1,6 +1,6 @@
-const Form = () => {
+const AddForm = () => {
     return (
-        <form>
+        <form id = "new">
             <p>Date of Event:</p>
             <input type="date" required/>
 
@@ -15,4 +15,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default AddForm;

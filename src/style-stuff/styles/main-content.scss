@@ -1,0 +1,78 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #bff5b9;
+    position: absolute;
+    left: 5vw;
+    top: 10vh;
+    width: 95vw;
+    height: 90vh;
+    align-items: center;
+    justify-items: center;  
+    text-align: center;
+    z-index: -20;
+    
+    .row {
+        display: flex;
+        column-gap: calc(90vh * (0.9 / 7));
+        margin: 2%;
+    }
+    .prevMButton{
+        position: absolute;
+        left: -0.5vw;
+        top: 13vh;
+        z-index: 0;
+        margin: 10%;
+        width: 6vw;
+        height: 6vw;
+        background-color: #000000;
+        opacity: 0%;
+        border-radius: 100%;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+    .prevMButton:hover {
+        opacity: 15%;
+    }
+    .prevMButton:active{
+        opacity: 30%;
+   }
+    .prevMImg{
+        position: absolute;
+        left: 0%;
+        top: 15vh;
+        z-index: -10;
+        margin: 10%;
+        width: 4vw;
+        height: 4vw;
+    }
+    .nextMButton{
+        position: absolute;
+        right: -0.5vw;
+        top: 13vh;
+        z-index: 0;
+        margin: 10%;
+        width: 6vw;
+        height: 6vw;
+        background-color: #000000;
+        opacity: 0%;
+        border-radius: 100%;
+        cursor: pointer;
+        transition: opacity 0.1s;
+    }
+    .nextMButton:hover {
+        opacity: 15%;
+    }
+    .nextMButton:active{
+        opacity: 30%;
+   }
+    .nextMImg{
+        position: absolute;
+        right: 0;
+        top: 15vh;
+        z-index: -10;
+        margin: 10%;
+        width: 4vw;
+        height: 4vw;
+    }
+};
