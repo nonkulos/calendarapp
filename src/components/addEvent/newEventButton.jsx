@@ -2,6 +2,7 @@ import React from "react";
 import newEventButton from "../images/newEventButton.png";
 import toggleWidebar from "../../style-stuff/logic/toggleWidebar";
 
+
 const NewEventButton = () => {
 
     const toggleNewEvent = () => {

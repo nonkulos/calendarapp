@@ -1,6 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { useState } from 'react';
 
 import SettingsForm from '../../components/settings/settingsForm';
 import AddForm from '../../components/addEvent/newEventForm';

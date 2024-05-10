@@ -12,7 +12,7 @@ const Buttons = () => {
 
     return (
         <>
-            <p>{day.toLocaleString('en-US', {month: "long", year: "numeric"})}</p>
+            <h4>{day.toLocaleString('en-US', {month: "long", year: "numeric"})}</h4>
             <table>{rows}</table>
             <div className = "row">
                 <img src={backArrow} alt = "Previous Month" className = "prevMImg" />

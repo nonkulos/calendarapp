@@ -1,7 +1,6 @@
 import Buttons from './components/calendar/adjMonth';
 import Sidebar from './components/sidebar/sidebar';
 import Bar from './components/topBar/barContents';
-import Widebar from './components/sidebar/wideSidebar';
 
 const App = () => {
     return (
@@ -9,15 +8,13 @@ const App = () => {
             <div class="topbar">
                 <Bar />
             </div>
-            <div class="widebar">
-                <Widebar />
+            <div class="widebar" id = "widebar" />
+            <div>
+                <Sidebar />
             </div>
-                <div>
-                    <Sidebar />
-                </div>
-                <div class="main-content text-center">
-                    <Buttons />
-                </div>
+            <div class="main-content text-center">
+                <Buttons />
+            </div>
         </>
     )
 }
