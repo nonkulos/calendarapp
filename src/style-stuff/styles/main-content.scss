@@ -12,11 +12,6 @@
     text-align: center;
     z-index: -20;
     
-    .row {
-        display: flex;
-        column-gap: calc(90vh * (0.9 / 7));
-        margin: 2%;
-    }
     .prevMButton{
         position: absolute;
         left: -0.5vw;

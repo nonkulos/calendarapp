@@ -17,10 +17,11 @@ table {
     border-spacing: 0;
     border-collapse: seperate;
     border-radius: 30px;
+    border: 1px solid black;
     td {
-        background-color: #8bd39b;
         border: 1px solid black;
-        $length: calc(90vh * (0.9 / 7));
+        background-color: #8bd39b;
+        $length: calc(85vh * (0.9 / 7));
         height: $length;
         width: $length;
     };
@@ -30,6 +31,10 @@ table {
         height: calc($length/2);
     } 
 };
+
+.calendarNum:hover {
+    opacity: 80%;
+}
 
 tr:first-child td:first-child { border-top-left-radius: 30px; }
 tr:first-child td:last-child { border-top-right-radius: 30px; }
