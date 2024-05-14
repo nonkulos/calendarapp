@@ -1,0 +1,39 @@
+@keyframes opacify {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 30%;
+    }
+}
+@keyframes deopacify {
+    0% {
+        opacity: 30%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
+
+.opacityThingy {
+    pointer-events: none;
+    opacity: 0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 10vw;
+}
+
+.darken {
+    animation: 0.5s ease-in 0s opacify;
+    opacity: 30%;
+}
+.lighten {
+    animation: 0.5s ease-in 0s deopacify;
+}

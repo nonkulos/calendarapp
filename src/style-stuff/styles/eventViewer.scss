@@ -1,0 +1,38 @@
+@keyframes slideup {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(0vh);
+    }
+}
+@keyframes slidedown {
+    0% {
+        transform: translateY(0vh);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.eventViewer {
+    text-align: center;
+    position: absolute;
+    border-radius: 30px;
+    left: 20vw;
+    top: 10vh;
+    width: 60vw;
+    height: 80vh;
+    transform: translateY(100vh);
+    z-index: 30;
+    background-color: #FFFFFF;
+}
+
+.show-event-viewer {
+    animation: 0.5s ease-out 0s slideup;
+    transform: translateY(0vh);
+}
+
+.hide-event-viewer {
+    animation: 0.5s ease-in 0s slidedown;
+}

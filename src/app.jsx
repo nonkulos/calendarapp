@@ -1,20 +1,23 @@
 import Buttons from './components/calendar/adjMonth';
 import Sidebar from './components/sidebar/sidebar';
 import Bar from './components/topBar/barContents';
+import EventViewer from './components/eventViewer/eventViewer';
 
 const App = () => {
     return (
         <>
-            <div class="topbar">
+            <div className="topbar">
                 <Bar />
             </div>
-            <div class="widebar" id = "widebar" />
+            <div className="widebar" id = "widebar" />
             <div>
                 <Sidebar />
             </div>
-            <div class="main-content text-center">
+            <div className="main-content text-center">
                 <Buttons />
             </div>
+            <EventViewer />
+            <div className="opacityThingy" id = "opacityThingy"/>
         </>
     )
 }

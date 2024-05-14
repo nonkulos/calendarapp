@@ -3,7 +3,7 @@ import NewEventButton from '../addEvent/newEventButton'
 
 const Sidebar = () => {
     return (
-    <div class = "sidebar">
+    <div className = "sidebar">
         <SettingButton />
         <NewEventButton />
     </div>
