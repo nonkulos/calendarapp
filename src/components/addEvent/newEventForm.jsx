@@ -11,6 +11,13 @@ const AddForm = () => {
             <br />
 
             <input type="submit" value = "Save"/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <small>You are currently logged in as guest</small>
         </form>
     )
 }

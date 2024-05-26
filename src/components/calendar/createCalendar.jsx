@@ -8,7 +8,6 @@ const calcNum = (year, month) => {
 
   const toggleEventViewer = (event) => {
     const clickedID = event.target.id;
-    console.log(clickedID);
     showEventViewer(day, clickedID);
   }
 

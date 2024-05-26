@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
+import LoginForm from '../../components/login/loginForm';
 import SettingsForm from '../../components/settings/settingsForm';
 import AddForm from '../../components/addEvent/newEventForm';
 
@@ -9,6 +10,8 @@ const findCurrForm = () => {
         return "settings";
     } else if(document.getElementById("new")){
         return "newevent";
+    } else if(document.getElementById("login")){
+        return "login";
     }
 }
 
@@ -18,10 +21,16 @@ const toggleWidebar = (form) => {
     const widebarPos = widebar.getBoundingClientRect();
     let newChild = <AddForm />;
 
-    if(form == "settings"){
-        newChild = <SettingsForm />;
-    } else if (form == "newevent"){
-        newChild = <AddForm />;
+    switch(currForm){  
+        case "settings":
+            newChild = <SettingsForm />;
+            break;
+        case "newevent":
+            newChild = <AddForm />;
+            break;
+        case "login":
+            newChild = <LoginForm />;
+            break;
     }
 
     if(widebarPos.x <= 0){
@@ -37,14 +46,19 @@ const toggleWidebar = (form) => {
         document.getElementById("opacityThingy").classList.remove("darken");
     }
 
-    if(form == "settings"){
-        const node = widebar;
-        const root = createRoot(node);
-        root.render(<SettingsForm />);
-    } else if (form == "newevent"){
-        const node = widebar;
-        const root = createRoot(node);
-        root.render(<AddForm />);
+    
+    const node = widebar;
+    const root = createRoot(node);
+    switch(form){
+        case "settings":
+            root.render(<SettingsForm />);
+            break;
+        case "newevent":
+            root.render(<AddForm />);
+            break;
+        case "login":
+            root.render(<LoginForm />);
+            break;
     }
 }
 

@@ -17,7 +17,6 @@ const App = () => {
 
     return (
         <>
-            <h1>{message}</h1>
             <div className="topbar">
                 <Bar />
             </div>
