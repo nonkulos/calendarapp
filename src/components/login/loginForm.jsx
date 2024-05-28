@@ -13,7 +13,7 @@ const LoginForm = () => {
             <br />
             <br />
             <p>Don't have an account?</p>
-            <a href = "#">Sign Up</a>
+            <a href = "register">Sign Up</a>
             <br />
             <br />
             <br />

@@ -1,35 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Buttons from './components/calendar/adjMonth';
-import Sidebar from './components/sidebar/sidebar';
-import Bar from './components/topBar/barContents';
-import EventViewer from './components/eventViewer/eventViewer';
+import Homepage from "./pages/homepage";
+import Register from "./pages/register";
 
 const App = () => {
-    
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:3001/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
-
     return (
-        <>
-            <div className="topbar">
-                <Bar />
-            </div>
-            <div className="widebar" id = "widebar" />
-            <div>
-                <Sidebar />
-            </div>
-            <div className="main-content text-center">
-                <Buttons />
-            </div>
-            <EventViewer />
-            <div className="opacityThingy" id = "opacityThingy"/>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/*" element={<Navigate to="/" />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
