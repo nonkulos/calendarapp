@@ -20,10 +20,6 @@ const SettingsForm = () => {
 
             <input type="submit" value="Save Changes"/>
             <br />
-            <br />
-            <br />
-            <br /> 
-            <br />
 
             <small>You are currently logged in as guest</small>
         </form>

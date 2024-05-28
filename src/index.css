@@ -71,6 +71,31 @@
   height: 4vw;
 }
 
+.register-main-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #bff5b9;
+  position: absolute;
+  left: 0vw;
+  top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  z-index: -20;
+}
+
+.registrationInput {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 1vh;
+  margin: 1vh;
+  height: 5vh;
+  width: 20vw;
+  font-family: "Kanit";
+}
+
 .sidebar {
   background-color: #8bd39b;
   position: absolute;
@@ -171,6 +196,21 @@
   width: 95vw;
   height: 10vh;
   z-index: -20;
+  margin: 0;
+  padding: 0;
+}
+
+.registerTopbar {
+  text-align: center;
+  background-color: #71e293;
+  position: absolute;
+  left: 0vw;
+  top: 0vh;
+  width: 100vw;
+  height: 10vh;
+  z-index: -20;
+  margin: 0;
+  padding: 0;
 }
 
 @keyframes slidein {
@@ -211,6 +251,29 @@
 
 .reduce-widebar {
   animation: 0.5s normal 0s slideout;
+}
+
+.widebar-input {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  height: 2vh;
+  width: 10vw;
+  font-family: "Kanit";
+}
+
+input[type=submit] {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 0.5vh;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+  height: 5vh;
+  width: 10vw;
+  font-family: "Kanit";
+  cursor: pointer;
 }
 
 .kanit-light {
@@ -353,6 +416,23 @@ tr:last-child td:first-child {
 
 tr:last-child td:last-child {
   border-bottom-right-radius: 30px;
+}
+
+small {
+  position: absolute;
+  font-size: x-small;
+  bottom: 2vh;
+}
+
+h1 {
+  text-align: center;
+  margin: 0.5vh;
+  padding: 0.5vh;
+}
+
+p {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 /*# sourceMappingURL=index.css.map */

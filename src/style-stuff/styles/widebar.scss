@@ -38,3 +38,26 @@
 .reduce-widebar {
     animation: 0.5s normal 0s slideout;
 }
+
+.widebar-input {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    height: 2vh;
+    width: 10vw;
+    font-family: "Kanit";
+}
+
+input[type="submit"] {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 0.5vh;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    height: 5vh;
+    width: 10vw;
+    font-family: "Kanit";
+    cursor: pointer;
+}

@@ -43,3 +43,20 @@ tr:first-child td:last-child { border-top-right-radius: 30px; }
 
 tr:last-child td:first-child { border-bottom-left-radius: 30px; }
 tr:last-child td:last-child { border-bottom-right-radius: 30px; }
+
+small {
+    position: absolute;
+    font-size: x-small;
+    bottom: 2vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 0.5vh;
+    padding: 0.5vh;
+}
+
+p {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
