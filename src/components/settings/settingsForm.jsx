@@ -2,10 +2,10 @@ const SettingsForm = () => {
     return (
         <form id = "settings">
             <p> Select Theme: </p>
-            <input id = "lightTheme" type="radio" />
+            <input id = "lightTheme" type="radio" name="themeChoice"/>
             <label for = "lightTheme">Light Theme</label>
             <br />
-            <input id = "darkTheme" type="radio" />
+            <input id = "darkTheme" type="radio" name="themeChoice"/>
             <label for = "darkTheme">Dark Theme</label>
 
             <p>Receive Notifications From: </p>
