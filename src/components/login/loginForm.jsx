@@ -1,3 +1,5 @@
+import handleFormSubmit from "../../client-server-stuff/client";
+
 const LoginForm = () => {    
     return (
         <form id = "login">
@@ -9,7 +11,7 @@ const LoginForm = () => {
             <input type="password" required className="widebar-input"/>
             <br />
 
-            <input type="submit" value="Log In"/>
+            <input type="submit" value="Log In" onClick={handleFormSubmit}/>
             <br />
             <br />
             <p>Don't have an account?</p>

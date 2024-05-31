@@ -1,3 +1,5 @@
+import handleFormSubmit from "../../client-server-stuff/client";
+
 const SettingsForm = () => {    
     return (
         <form id = "settings">
@@ -18,7 +20,7 @@ const SettingsForm = () => {
             <br />
             <br />
 
-            <input type="submit" value="Save Changes"/>
+            <input type="submit" value="Save Changes" id="submitButton" onClick={handleFormSubmit}/>
             <br />
 
             <small>You are currently logged in as guest</small>

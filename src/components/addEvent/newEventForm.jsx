@@ -1,3 +1,5 @@
+import handleFormSubmit from "../../client-server-stuff/client";
+
 const AddForm = () => {
     return (
         <form id = "new">
@@ -10,7 +12,7 @@ const AddForm = () => {
             <br />
             <br />
 
-            <input type="submit" value = "Save" />
+            <input type="submit" value = "Save" onClick={handleFormSubmit}/>
             <br />
             <small>You are currently logged in as guest</small>
         </form>

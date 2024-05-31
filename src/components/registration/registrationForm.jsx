@@ -1,3 +1,5 @@
+import handleFormSubmit from "../../client-server-stuff/client";
+
 const RegisterForm = () => {
   return (
     <form >
@@ -9,7 +11,7 @@ const RegisterForm = () => {
         <br />
         <input type="password" placeholder="Password" className="registrationInput"/>
         <br />
-        <input type="submit" value="Register" className="registrationInput"/>
+        <input type="submit" value="Register" className="registrationInput" onClick={handleFormSubmit}/>
     </form>
   );
 }

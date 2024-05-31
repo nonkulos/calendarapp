@@ -13,3 +13,8 @@ app.get('/message', (req, res) => {
 app.listen(3001, () => {
     console.log(`Server is running on port 3001.`);
   });
+
+app.post('/formSubmit', (req, res) => {
+    console.log("post request received");
+    res.sendStatus(201)
+});
