@@ -276,10 +276,6 @@ input[type=submit] {
   cursor: pointer;
 }
 
-.status {
-  color: #008000;
-}
-
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
