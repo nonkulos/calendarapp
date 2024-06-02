@@ -1,5 +1,11 @@
 import handleFormSubmit from "../../client-server-stuff/client";
 
+const submitForm = (e) => {
+    e.preventDefault();
+    handleFormSubmit(e, "settingStatus", "Settings Saved");
+
+}
+
 const SettingsForm = () => {    
     return (
         <form id = "settings">
@@ -20,8 +26,10 @@ const SettingsForm = () => {
             <br />
             <br />
 
-            <input type="submit" value="Save Changes" id="submitButton" onClick={handleFormSubmit}/>
+            <input type="submit" value="Save Changes" onClick={submitForm}/>
             <br />
+
+            <p id="settingStatus"></p>
 
             <small>You are currently logged in as guest</small>
         </form>

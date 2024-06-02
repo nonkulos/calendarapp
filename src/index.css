@@ -276,6 +276,10 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.status {
+  color: #008000;
+}
+
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
@@ -370,6 +374,14 @@ input[type=submit] {
 
 .lighten {
   animation: 0.5s ease-in 0s deopacify;
+}
+
+.failed {
+  color: #ff0000;
+}
+
+.success {
+  color: #009200;
 }
 
 html {
