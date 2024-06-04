@@ -1,4 +1,4 @@
-import handleFormSubmit from "../../client-server-stuff/client";
+import handleFormSubmit from "../../client-server-stuff/submitForm";
 
 const submitForm = (e) => {
     e.preventDefault();

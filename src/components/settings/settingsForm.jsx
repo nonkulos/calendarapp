@@ -1,20 +1,34 @@
-import handleFormSubmit from "../../client-server-stuff/client";
+import {useState} from "react";
+
+import handleFormSubmit from "../../client-server-stuff/submitForm.js";
+import fetchCountries from "../../client-server-stuff/fetchCountries.js";
+
+let countries = [];
 
 const submitForm = (e) => {
     e.preventDefault();
     handleFormSubmit(e, "settingStatus", "Settings Saved");
-
 }
 
-const SettingsForm = () => {    
+const SettingsForm = () => {
+    const [loaded, setLoaded] = useState(false);
+    fetchCountries().then((data) => 
+        {
+            countries = data;
+            setLoaded(true);
+        });
+
     return (
         <form id = "settings">
-            <p> Select Theme: </p>
-            <input id = "lightTheme" type="radio" name="themeChoice"/>
-            <label for = "lightTheme">Light Theme</label>
-            <br />
-            <input id = "darkTheme" type="radio" name="themeChoice"/>
-            <label for = "darkTheme">Dark Theme</label>
+            <p>Choose Country: </p>
+            <select name="countries" id = "country">
+                <option value="default">Select Country</option>
+                {
+                    countries.map((country, i) => 
+                        <option key = {i} value = {country.countryCode}>{country.name}</option>
+                    )
+                }
+            </select>
 
             <p>Receive Notifications From: </p>
             <input id = "e-mail" type = "checkbox" />
