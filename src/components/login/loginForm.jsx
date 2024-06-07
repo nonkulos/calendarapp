@@ -22,7 +22,7 @@ const LoginForm = () => {
             <p id="loginStatus"></p>
             <br />
             <p>Don't have an account?</p>
-            <a href = "register">Sign Up</a>
+            <a href = "register" target="_blank">Sign Up</a>
             <br />
             <small>You are currently logged in as guest</small>
         </form>

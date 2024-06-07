@@ -1,7 +1,6 @@
 import showEventViewer from "../../style-stuff/logic/toggleEventViewer";
 
 const calcNum = (year, month) => {
-
   let day = new Date(year, month);
   day.setDate(1)
   day.setDate(day.getDate() - day.getDay() - 1);
@@ -32,7 +31,11 @@ const calcNum = (year, month) => {
           <tr key={i}>
             {
               week.map((day, j) => 
-                <td key={j} className="calendarNum" onClick={toggleEventViewer} id = {((5-i)*7)+(7-j)-1}>{day}</td>
+                  <td key={j} className="calendarNum" onClick={toggleEventViewer} id = {((5-i)*7)+(7-j)-1}>
+                    {day}
+                    <div className="dotTemplate dot" />
+                    <div className="dotTemplate dot" />
+                  </td>
               )
             }
           </tr>

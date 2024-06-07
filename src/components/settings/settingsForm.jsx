@@ -1,12 +1,15 @@
 import {useState} from "react";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
-import fetchCountries from "../../client-server-stuff/fetchCountries.js";
+import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
 
 let countries = [];
 
 const submitForm = (e) => {
+    const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
+    console.log(currYear);
     e.preventDefault();
+    fetchHolidays(document.getElementById("country").value, 2024).then((data) => console.log(data));
     handleFormSubmit(e, "settingStatus", "Settings Saved");
 }
 
@@ -21,7 +24,7 @@ const SettingsForm = () => {
     return (
         <form id = "settings">
             <p>Choose Country: </p>
-            <select name="countries" id = "country">
+            <select name="countries" id = "updateCountry">
                 <option value="default">Select Country</option>
                 {
                     countries.map((country, i) => 

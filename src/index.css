@@ -96,6 +96,26 @@
   font-family: "Kanit";
 }
 
+.dotTemplate {
+  height: 10%;
+  width: 40%;
+  border-radius: 5px;
+  display: block;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+.dotTemplate.dot {
+  background-color: rgba(0, 0, 0, 0.0823529412);
+}
+.dotTemplate.eventDot {
+  background-color: #62006e;
+}
+.dotTemplate.holidayDot {
+  background-color: #4083ff;
+}
+
 .sidebar {
   background-color: #8bd39b;
   position: absolute;
@@ -276,6 +296,10 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.status {
+  color: #008000;
+}
+
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
@@ -441,6 +465,16 @@ h1 {
 p {
   margin-top: 2vh;
   margin-bottom: 2vh;
+}
+
+select {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 0vh;
+  margin: 2vh;
+  height: 5vh;
+  width: 10vw;
+  font-family: "Kanit";
 }
 
 /*# sourceMappingURL=index.css.map */
