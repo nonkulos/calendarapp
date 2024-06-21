@@ -14,10 +14,10 @@
     
     .prevMButton{
         position: absolute;
-        left: -0.5vw;
-        top: 13vh;
+        left: 10vw;
+        top: 41vh;
         z-index: 0;
-        margin: 10%;
+        margin: 0%;
         width: 6vw;
         height: 6vw;
         background-color: #000000;
@@ -34,19 +34,19 @@
    }
     .prevMImg{
         position: absolute;
-        left: 0%;
-        top: 15vh;
+        left: 11vw;
+        top: 43vh;
         z-index: -10;
-        margin: 10%;
+        margin: 0%;
         width: 4vw;
         height: 4vw;
     }
     .nextMButton{
         position: absolute;
-        right: -0.5vw;
-        top: 13vh;
+        right: 10vw;
+        top: 41vh;
         z-index: 0;
-        margin: 10%;
+        margin: 0%;
         width: 6vw;
         height: 6vw;
         background-color: #000000;
@@ -63,10 +63,10 @@
    }
     .nextMImg{
         position: absolute;
-        right: 0;
-        top: 15vh;
+        right: 11vw;
+        top: 43vh;
         z-index: -10;
-        margin: 10%;
+        margin: 0%;
         width: 4vw;
         height: 4vw;
     }
