@@ -116,6 +116,10 @@
   background-color: #4083ff;
 }
 
+.grey {
+  color: rgba(0, 0, 0, 0.3137254902);
+}
+
 .sidebar {
   background-color: #8bd39b;
   position: absolute;
