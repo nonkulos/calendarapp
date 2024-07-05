@@ -2,6 +2,7 @@ import {useState} from "react";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
+import addDocs from "../../database-stuff/add_docs.js";
 
 let countries = [];
 
@@ -11,6 +12,7 @@ const submitForm = (e) => {
     e.preventDefault();
     fetchHolidays(document.getElementById("country").value, 2024).then((data) => console.log(data));
     handleFormSubmit(e, "settingStatus", "Settings Saved");
+    addDocs();
 }
 
 const SettingsForm = () => {
