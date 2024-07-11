@@ -1,12 +1,14 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import connect from "../../../server/database-stuff/connect.js";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
-import addDocs from "../../database-stuff/add_docs.js";
+import addDocs from "../../../server/database-stuff/add_docs.js";
 
 let countries = [];
 
 const submitForm = (e) => {
+    const connection = connect();
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
     console.log(currYear);
     e.preventDefault();
