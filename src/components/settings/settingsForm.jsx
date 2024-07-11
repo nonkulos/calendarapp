@@ -1,12 +1,29 @@
 import {useState, useEffect} from "react";
-import connect from "../../../server/database-stuff/connect.js";
+import * as Realm from "realm-web";
+//import connect from "../../../server/database-stuff/connect.js";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
-import addDocs from "../../../server/database-stuff/add_docs.js";
+//import addDocs from "../../../server/database-stuff/add_docs.js";
 
 let countries = [];
 
+const app = new Realm.App({ id: "calendar-database-cusojoa" });
+const UserDetail = ({ user }) => {
+    return (
+        <div>
+          <h1>Logged in with anonymous id: {user.id}</h1>
+        </div>
+    );
+}
+
+function Login({ setUser }) {
+    const loginAnonymous = async () => {
+      const user = await app.logIn(Realm.Credentials.anonymous());
+      setUser(user);
+    };
+    return <button onClick={loginAnonymous}>Log In</button>;
+  }
 const submitForm = (e) => {
     const connection = connect();
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
@@ -19,6 +36,7 @@ const submitForm = (e) => {
 
 const SettingsForm = () => {
     const [loaded, setLoaded] = useState(false);
+    const [user, setUser] = useState(app.currentUser);
     fetchCountries().then((data) => 
         {
             countries = data;
@@ -52,7 +70,9 @@ const SettingsForm = () => {
 
             <p id="settingStatus"></p>
 
-            <small>You are currently logged in as guest</small>
+            <div className="login-status">
+                {user ? <UserDetail user={user} /> : <Login setUser={setUser} />}
+            </div>
         </form>
     )
 }
