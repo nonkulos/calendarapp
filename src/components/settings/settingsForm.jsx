@@ -9,10 +9,11 @@ import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuf
 let countries = [];
 
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
+
 const UserDetail = ({ user }) => {
     return (
         <div>
-          <h1>Logged in with anonymous id: {user.id}</h1>
+          <small>Logged in with anonymous id: {user.id}</small>
         </div>
     );
 }
@@ -24,6 +25,7 @@ function Login({ setUser }) {
     };
     return <button onClick={loginAnonymous}>Log In</button>;
   }
+
 const submitForm = (e) => {
     const connection = connect();
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
