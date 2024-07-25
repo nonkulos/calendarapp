@@ -8,22 +8,32 @@ import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuf
 
 let countries = [];
 
+const logOut = async () => {
+    const user = await app.currentUser?.logOut();
+    setUser(null);
+}
+
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
 
 const UserDetail = ({ user }) => {
     return (
         <div>
-          <small>Logged in with anonymous id: {user.id}</small>
+          <small>
+          Logged in with anonymous id: {user.id}<br />
+            <button onClick = {logOut}>Log out</button>
+          </small>
         </div>
     );
 }
 
 function Login({ setUser }) {
-    const loginAnonymous = async () => {
-      const user = await app.logIn(Realm.Credentials.anonymous());
-      setUser(user);
-    };
-    return <button onClick={loginAnonymous}>Log In</button>;
+    
+    const loginEmail = async (email, password) => {
+    const credentials = Realm.Credentials.emailPassword(email, password);
+    const user = await app.logIn(credentials);
+    return user;
+}
+    return <button onClick={loginEmail}>Log In</button>;
   }
 
 const submitForm = (e) => {

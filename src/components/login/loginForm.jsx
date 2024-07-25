@@ -19,7 +19,7 @@ const UserDetail = ({ user }) => {
     }
     return (
         <div>
-          <button>Log Out</button>
+          <button onClick={logoutAnonymous}>Log Out</button>
           <small>Logged in with anonymous id: {user.id}</small>
         </div>
     );
@@ -30,21 +30,24 @@ function Login({ setUser }) {
       const user = await app.logIn(Realm.Credentials.anonymous());
       setUser(user);
     };
-    return <button onClick={loginAnonymous}>Log In</button>;
+    return (
+        <form id="login">
+        <p>Username:</p>
+        <input type="text" required className="widebar-input"/>
+        <br />
+
+        <p>Password:</p>   
+        <input type="password" required className="widebar-input"/>
+        <br />
+        <button onClick={loginAnonymous}>Log In</button>
+        </form>
+    );
   }
   
 const LoginForm = () => {    
     const [user, setUser] = useState(app.currentUser);
     return (
-        <form id = "login">
-            <p>Username:</p>
-            <input type="text" required className="widebar-input"/>
-            <br />
-
-            <p>Password:</p>   
-            <input type="password" required className="widebar-input"/>
-            <br />
-
+        <div>
             <div className="login-status">
                 {user ? <UserDetail user={user} /> : <Login setUser={setUser} />}
             </div>
@@ -54,7 +57,7 @@ const LoginForm = () => {
             <p>Don't have an account?</p>
             <a href = "register" target="_blank">Sign Up</a>
             <br />
-        </form>
+        </div>
     )
 }
 //<input type="submit" value="Log In" onClick={submitForm}/>
