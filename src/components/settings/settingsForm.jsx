@@ -26,15 +26,6 @@ const UserDetail = ({ user }) => {
     );
 }
 
-function Login({ setUser }) {
-    
-    const loginEmail = async (email, password) => {
-    const credentials = Realm.Credentials.emailPassword(email, password);
-    const user = await app.logIn(credentials);
-    return user;
-}
-    return <button onClick={loginEmail}>Log In</button>;
-  }
 
 const submitForm = (e) => {
     const connection = connect();
@@ -81,10 +72,6 @@ const SettingsForm = () => {
             <br />
 
             <p id="settingStatus"></p>
-
-            <div className="login-status">
-                {user ? <UserDetail user={user} /> : <Login setUser={setUser} />}
-            </div>
         </form>
     )
 }
