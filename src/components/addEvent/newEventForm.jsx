@@ -1,9 +1,9 @@
 import handleFormSubmit from "../../client-server-stuff/submitForm";
+import {username} from "../login/loginForm";
 
 const submitForm = (e) => {
     e.preventDefault();
     handleFormSubmit(e, "newEventStatus", "Event Added");
-
 }
 
 const AddForm = () => {
@@ -22,7 +22,7 @@ const AddForm = () => {
             <br />
             <p id="newEventStatus"></p>
 
-            <small>You are currently logged in as guest</small>
+            <div>{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }

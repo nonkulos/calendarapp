@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import LoginForm from '../../components/login/loginForm';
+import {LoginForm} from '../../components/login/loginForm';
 import SettingsForm from '../../components/settings/settingsForm';
 import AddForm from '../../components/addEvent/newEventForm';
 

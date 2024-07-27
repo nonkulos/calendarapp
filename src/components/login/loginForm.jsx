@@ -1,36 +1,38 @@
 import {useState} from "react";
 import * as Realm from "realm-web";
 
-import handleFormSubmit from "../../client-server-stuff/submitForm.js";
-const submitForm = async (e, {setUser}) => {
-    setUser(user);
-    e.preventDefault();
-    handleFormSubmit(e, "loginStatus", "Login Successful");
-}
-
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
+let username = "c";
 
-const UserDetail = ({ user }) => {
+const UserDetail = ({ user, setUser }) => {
     const logout = async () => {
+        setUser(null);
+        username = null;
         const user = await app.currentUser?.logOut();
     }
     return (
         <>
           <p>Currently logged in as {user.profile.email}</p>
-          <button onClick={logout}>Log Out</button>
+          <input type="submit" value="Log Out" onClick={logout} />
         </>
     );
 }
 
-function Login({ setUser }) {
+function Login({ user, setUser }) {
     const loginEmail = async (e) => {
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const credentials = Realm.Credentials.emailPassword(email, password);
-        const user = await app.logIn(credentials);
-        return user;
+        try {
+            const user = await app.logIn(credentials);
+            username = user.profile.email;
+            setUser(user);
+        } catch (error) {
+            document.getElementById("loginStatus").textContent = "Invalid username or password";
+        }
     }
+    
 
     return (
         <div>
@@ -42,9 +44,10 @@ function Login({ setUser }) {
             <p>Password:</p>   
             <input type="password" id="password" required className="widebar-input"/>
             <br />
-            <button onClick={loginEmail}>Log In</button>
+            <input value="Log In" type="submit" onClick={loginEmail} />
             </form>
             
+            <p id="loginStatus" className="failed"></p>
             <br />
             <br />
             <p>Don't have an account?</p>
@@ -52,16 +55,15 @@ function Login({ setUser }) {
             <br />
         </div>
     );
-  }
+}
   
 const LoginForm = () => {    
     const [user, setUser] = useState(app.currentUser);
     return (
         <div className="login-status">
-            {user ? <UserDetail user={user} /> : <Login setUser={setUser} />}
+            {user ? <UserDetail user = {user} setUser={setUser} /> : <Login setUser={setUser} />}
         </div>
         
     )
 }
-//<input type="submit" value="Log In" onClick={submitForm}/>
-export default LoginForm
+export {LoginForm, username};

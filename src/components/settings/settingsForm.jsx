@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import * as Realm from "realm-web";
+import {username} from "../login/loginForm";
 //import connect from "../../../server/database-stuff/connect.js";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
@@ -72,6 +73,7 @@ const SettingsForm = () => {
             <br />
 
             <p id="settingStatus"></p>
+            <div>{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }
