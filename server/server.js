@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
+const port = process.env.PORT || 3001;
 const app = express();
 
 app.use(cors());
@@ -10,8 +11,8 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-app.listen(3001, () => {
-    console.log(`Server is running on port 3001.`);
+app.listen(port, "0.0.0.0", function () {
+    console.log(`Server is running on port ${port}`);
   });
 
 app.post('/formSubmit', (req, res) => {
