@@ -10,8 +10,8 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-app.listen(port, "0.0.0.0", () => {
-    console.log(`Server is running on port "0.0.0.0".`);
+app.listen(3001, () => {
+    console.log(`Server is running on port 3001.`);
   });
 
 app.post('/formSubmit', (req, res) => {
