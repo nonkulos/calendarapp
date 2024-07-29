@@ -31,7 +31,7 @@ const Homepage = () => {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-    fetch("https://calendarapp-production-cb6a.up.railway.app/message")
+    fetch("https://localhost:3001")
         .then((res) => res.json())
         .then((data) => setMessage(data.message));
     }, []);

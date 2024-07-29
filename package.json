@@ -1,6 +1,6 @@
 {
   "name": "calendarapp",
-  "proxy": "https://calendarapp-production-cb6a.up.railway.app",
+  "proxy": "https://localhost:3001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
