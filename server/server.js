@@ -1,5 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import cors from "cors";
 
 const app = express();
 
@@ -18,3 +20,9 @@ app.post('/formSubmit', (req, res) => {
     console.log("post request received");
     res.sendStatus(201)
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const publicPath = path.join(__dirname, '..', 'public'); // this path expects that you put the server file inside of a folder, such as server. If you want to make it in the top level directory, get rid of '..'
+app.use(express.static(publicPath));
