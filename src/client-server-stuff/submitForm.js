@@ -1,6 +1,6 @@
 const handleFormSubmit = (e, statusElement, msg) => {
     const status = document.getElementById(statusElement);
-    fetch("http://localhost:3001/formSubmit", {method: "POST"})
+    fetch("https://localhost:3001", {method: "POST"})
         .then(function(res){
             if(res.ok){
                 console.log("successfully posted data");

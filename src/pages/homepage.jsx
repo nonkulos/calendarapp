@@ -31,7 +31,7 @@ const Homepage = () => {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-    fetch("http://localhost:3001/message")
+    fetch("https://localhost:3001")
         .then((res) => res.json())
         .then((data) => setMessage(data.message));
     }, []);

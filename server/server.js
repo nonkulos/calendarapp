@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 
+const port = process.env.PORT || 3001;
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
