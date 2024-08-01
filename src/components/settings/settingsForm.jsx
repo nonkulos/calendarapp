@@ -16,20 +16,8 @@ const logOut = async () => {
 
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
 
-const UserDetail = ({ user }) => {
-    return (
-        <div>
-          <small>
-          Logged in with anonymous id: {user.id}<br />
-            <button onClick = {logOut}>Log out</button>
-          </small>
-        </div>
-    );
-}
-
-
 const submitForm = (e) => {
-    const connection = connect();
+    //const connection = connect();
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
     console.log(currYear);
     e.preventDefault();
@@ -40,7 +28,7 @@ const submitForm = (e) => {
 
 const SettingsForm = () => {
     const [loaded, setLoaded] = useState(false);
-    const [user, setUser] = useState(app.currentUser);
+    const [user, setUser] = useState(null);
     fetchCountries().then((data) => 
         {
             countries = data;

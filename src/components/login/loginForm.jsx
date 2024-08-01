@@ -2,12 +2,12 @@ import {useState} from "react";
 import * as Realm from "realm-web";
 
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
-let username = "c";
+let username = null;
 
 const UserDetail = ({ user, setUser }) => {
     const logout = async () => {
         setUser(null);
-        username = null;
+        username=null;
         const user = await app.currentUser?.logOut();
     }
     return (
@@ -20,6 +20,7 @@ const UserDetail = ({ user, setUser }) => {
 
 function Login({ user, setUser }) {
     const loginEmail = async (e) => {
+        console.log(username);
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
