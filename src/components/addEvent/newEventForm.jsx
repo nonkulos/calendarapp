@@ -18,7 +18,7 @@ const AddForm = () => {
             <br />
             <br />
 
-            <input type="submit" value = "Save" onClick={submitForm}/>
+            <button className="input-button" onClick={submitForm}>Save</button>
             <br />
             <p id="newEventStatus"></p>
 

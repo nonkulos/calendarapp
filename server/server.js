@@ -1,13 +1,13 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import cors from "cors";
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
 
 const port = process.env.PORT || 3001;
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(filename);
 
 const publicPath = path.join(__dirname, '..', 'public'); // this path expects that you put the server file inside of a folder, such as server. If you want to make it in the top level directory, get rid of '..'
 app.use(express.static(publicPath));
@@ -25,7 +25,7 @@ app.post('/formSubmit', (req, res) => {
     res.sendStatus(201)
 });
 
-app.listen(3001, "0.0.0.0", () => {
-    console.log(`Server is running on port 3001.`);
-  });
+app.listen(port, () => {
+    console.log(`Server is running.`);
+});
 

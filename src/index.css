@@ -288,7 +288,7 @@
   font-family: "Kanit";
 }
 
-input[type=submit] {
+.input-button {
   border-radius: 10px;
   border: 1px solid black;
   padding: 0.5vh;

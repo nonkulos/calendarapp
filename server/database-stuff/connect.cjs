@@ -1,7 +1,9 @@
 const {MongoClient} = require('mongodb');
+require('dotenv').config({path: '../config.env'});
 
 async function connect() {
-    const uri = process.env.REACT_APP_MONGODB_CONNECTION_URI;
+    const uri = process.env.MONGODB_CONNECTION_URI;
+    console.log(uri);
     const client = new MongoClient(uri);
     try{
         await client.connect();
@@ -14,4 +16,6 @@ async function connect() {
     }
 }
 
-export default connect;
+if(process.env.MONGODB_CONNECTION_URI != undefined){
+    connect();
+}

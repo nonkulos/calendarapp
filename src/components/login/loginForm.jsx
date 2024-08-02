@@ -13,7 +13,7 @@ const UserDetail = ({ user, setUser }) => {
     return (
         <>
           <p>Currently logged in as {user.profile.email}</p>
-          <input type="submit" value="Log Out" onClick={logout} />
+          <button className="input-button" onClick={logout}>Log Out</button>
         </>
     );
 }
@@ -45,7 +45,7 @@ function Login({ user, setUser }) {
             <p>Password:</p>   
             <input type="password" id="password" required className="widebar-input"/>
             <br />
-            <input value="Log In" type="submit" onClick={loginEmail} />
+            <button className="input-button" onClick={loginEmail}>Log In</button>
             </form>
             
             <p id="loginStatus" className="failed"></p>

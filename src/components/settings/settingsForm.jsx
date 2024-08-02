@@ -1,11 +1,9 @@
 import {useState, useEffect} from "react";
 import * as Realm from "realm-web";
 import {username} from "../login/loginForm";
-//import connect from "../../../server/database-stuff/connect.js";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
-//import addDocs from "../../../server/database-stuff/add_docs.js";
 
 let countries = [];
 
@@ -17,13 +15,11 @@ const logOut = async () => {
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
 
 const submitForm = (e) => {
-    //const connection = connect();
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
     console.log(currYear);
     e.preventDefault();
-    fetchHolidays(document.getElementById("country").value, 2024).then((data) => console.log(data));
+    fetchHolidays(document.getElementById("updateCountry").value, 2024).then((data) => console.log(data));
     handleFormSubmit(e, "settingStatus", "Settings Saved");
-    addDocs();
 }
 
 const SettingsForm = () => {
@@ -57,7 +53,7 @@ const SettingsForm = () => {
             <br />
             <br />
 
-            <input type="submit" value="Save Changes" onClick={submitForm}/>
+            <button className="input-button" onClick={submitForm}>Save Changes</button>
             <br />
 
             <p id="settingStatus"></p>
