@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
+import addDocs from './database-stuff/add_docs.js';
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -22,6 +23,20 @@ app.get('/', (req, res) => {
 
 app.post('/formSubmit', (req, res) => {
     console.log("post request received");
+    res.sendStatus(201)
+});
+
+app.post('/newUser', (req, res) => {
+    const user = JSON.parse(req.body);
+    console.log(user);
+    addDocs(user)
+    .then(() => {
+        console.log("User added to database");
+    })
+    .catch((e) => {
+        console.error(e);
+    });
+
     res.sendStatus(201)
 });
 

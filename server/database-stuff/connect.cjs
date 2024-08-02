@@ -1,5 +1,5 @@
 const {MongoClient} = require('mongodb');
-require('dotenv').config({path: '../config.env'});
+require('dotenv').config({path: '../server/config.env'});
 
 async function connect() {
     const uri = process.env.MONGODB_CONNECTION_URI;

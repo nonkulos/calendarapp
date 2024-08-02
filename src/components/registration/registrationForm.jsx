@@ -21,14 +21,34 @@ const submitForm = async (e) => {
     document.getElementById("registerStatus").innerHTML = "Please Select A Country";
     return;
   }
-  
+
   const email = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const country = document.getElementById("initCountry").value;
+  const user = {
+    "username": email,
+    "country": country,
+    "notifs": "text", // default notification setting
+  }
+  console.log(user);
   await app.emailPasswordAuth.registerUser({ email, password })
     .then(() => {
-      handleFormSubmit(e, "registerStatus", "Successfully Registered, You Can Now Log In");
+      fetch("http://localhost:3001/newUser", {
+        method: "POST",
+        body: user,
+      })
+        .then((res) => {
+          document.getElementById("registerStatus").classList.remove("failed");
+          document.getElementById("registerStatus").classList.add("success");
+          document.getElementById("registerStatus").innerHTML = "Successfully Registered";
+        })
+        .catch((res) => {
+          document.getElementById("registerStatus").innerHTML = "Failed to Save Data, Try Again Later";
+          return;
+        });
+      console.log("User Registered");
     })
-    .catch((res) => {
+    /*.catch((res) => {
       switch(res.statusCode) {
         case 409:
           document.getElementById("registerStatus").innerHTML = "Username Already Exists";
@@ -41,7 +61,7 @@ const submitForm = async (e) => {
           break;
       }
       return;
-    });
+    });*/
 }
 
 const RegisterForm = () => { 
