@@ -41,7 +41,11 @@ const makePref = () =>{
     }
     return newPref;
 }
+
 const submitForm = (e) => {
+    document.getElementById("settingStatus").innerHTML = "";
+    document.getElementById("settingStatus").classList.remove("success");
+    document.getElementById("settingStatus").classList.add("failed");
     const newCountry = document.getElementById("updateCountry").value;
     const newPhone = document.getElementById("phone").value;
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
@@ -58,6 +62,8 @@ const submitForm = (e) => {
         })
         .then((res) => {
             if (res.ok) {
+                document.getElementById("settingStatus").classList.remove("failed");
+                document.getElementById("settingStatus").classList.add("success");
                 document.getElementById("settingStatus").innerHTML = "Preferences updated";
             }
         })
@@ -105,7 +111,7 @@ const SettingsForm = () => {
             <button className="input-button" onClick={submitForm}>Save Changes</button>
             <br />
 
-            <p id="settingStatus"></p>
+            <p id="settingStatus" className="failed"></p>
             <div className = "login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
