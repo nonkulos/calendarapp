@@ -57,7 +57,7 @@ const SettingsForm = () => {
             <br />
 
             <p id="settingStatus"></p>
-            <div>{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
+            <div className = "login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }
