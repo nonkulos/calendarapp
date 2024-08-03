@@ -1,5 +1,4 @@
 import {useState, useEffect} from "react";
-import * as Realm from "realm-web";
 import {username} from "../login/loginForm";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
@@ -7,19 +6,66 @@ import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuf
 
 let countries = [];
 
-const logOut = async () => {
-    const user = await app.currentUser?.logOut();
-    setUser(null);
+const validateInfo = (country, phone) => {
+    if (country === "default") {
+        document.getElementById("settingStatus").innerHTML = "Please select a valid country";
+        return false;
+    }
+    if (phone === "") {
+        document.getElementById("settingStatus").innerHTML = "Please enter a valid phone number";
+        return false;
+    }
+    return true;
 }
 
-const app = new Realm.App({ id: "calendar-database-cusojoa" });
-
+const makePref = () =>{
+    const newCountry = document.getElementById("updateCountry").value;
+    const newPhone = document.getElementById("phone").value;
+    const email = document.getElementById("e-mail").checked;
+    const text = document.getElementById("text").checked;
+    let notifPref;
+    if(email && text){
+        notifPref = "both";
+    } else if(email){
+        notifPref = "email";
+    } else if(text){
+        notifPref = "text";
+    } else {
+        notifPref = "none";
+    }
+    const newPref = {
+        username: username,
+        country: newCountry,
+        phone: newPhone,
+        notifs: notifPref
+    }
+    return newPref;
+}
 const submitForm = (e) => {
+    const newCountry = document.getElementById("updateCountry").value;
+    const newPhone = document.getElementById("phone").value;
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
     console.log(currYear);
     e.preventDefault();
-    fetchHolidays(document.getElementById("updateCountry").value, 2024).then((data) => console.log(data));
-    handleFormSubmit(e, "settingStatus", "Settings Saved");
+    if (validateInfo(newCountry, newPhone)) {
+        const newPref = makePref();
+        fetch("http://localhost:3001/updatePref", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPref)
+        })
+        .then((res) => {
+            if (res.ok) {
+                document.getElementById("settingStatus").innerHTML = "Preferences updated";
+            }
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+    }
+    //fetchHolidays(document.getElementById("updateCountry").value, 2024).then((data) => console.log(data));
 }
 
 const SettingsForm = () => {
@@ -49,6 +95,9 @@ const SettingsForm = () => {
             <br />
             <input id = "text" type = "checkbox" />
             <label for = "text">Text</label>
+
+            <p>Edit Phone Number: </p>
+            <input  id = "phone" className = "widebar-input" type = "tel" />
 
             <br />
             <br />

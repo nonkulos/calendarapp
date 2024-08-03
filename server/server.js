@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import addDocs from './database-stuff/add_docs.js';
+import updatePref from './database-stuff/update.js';
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -38,6 +39,20 @@ app.post('/newUser', (req, res) => {
     });
 
     res.sendStatus(201)
+});
+
+app.post('/updatePref', (req, res) => {
+    const newPref = req.body;
+    updatePref(newPref.username, newPref)
+    .then(() => {
+        console.log("Preferences updated");
+        res.sendStatus(201)
+    })
+    .catch((e) => {
+        console.error(e);
+        res.sendStatus(500)
+    });
+
 });
 
 app.listen(port, () => {
