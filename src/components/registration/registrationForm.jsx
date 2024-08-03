@@ -34,8 +34,11 @@ const submitForm = async (e) => {
   await app.emailPasswordAuth.registerUser({ email, password })
     .then(() => {
       fetch("http://localhost:3001/newUser", {
+        headers: {
+          "Content-Type": "application/json",
+        },
         method: "POST",
-        body: user,
+        body: JSON.stringify(user),
       })
         .then((res) => {
           document.getElementById("registerStatus").classList.remove("failed");
@@ -48,7 +51,7 @@ const submitForm = async (e) => {
         });
       console.log("User Registered");
     })
-    /*.catch((res) => {
+    .catch((res) => {
       switch(res.statusCode) {
         case 409:
           document.getElementById("registerStatus").innerHTML = "Username Already Exists";
@@ -61,7 +64,7 @@ const submitForm = async (e) => {
           break;
       }
       return;
-    });*/
+    });
 }
 
 const RegisterForm = () => { 
@@ -79,9 +82,11 @@ const RegisterForm = () => {
           <br />
           <input type="text" placeholder="Last Name" className="registrationInput"/>
           <br />
-          <input type="username" id = "username" placeholder="Username (Required)" className="registrationInput" required/>
+          <input type="text" id = "username" placeholder="E-Mail (Required)" className="registrationInput" required/>
           <br />
           <input type="password" id = "password" placeholder="Password (Required)" className="registrationInput" required/>
+          <br />
+          <input type="tel" id="phone" placeholder="Phone Number (Required)" pattern = "[0-9]{3}-[0-9]{3}-[0-9]{4}" className="registrationInput"/>
           <br />
           <select name="countries" id = "initCountry" required>
                 <option value="default">Select Country (Required)</option>

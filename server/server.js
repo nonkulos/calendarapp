@@ -27,7 +27,7 @@ app.post('/formSubmit', (req, res) => {
 });
 
 app.post('/newUser', (req, res) => {
-    const user = JSON.parse(req.body);
+    const user = req.body;
     console.log(user);
     addDocs(user)
     .then(() => {
