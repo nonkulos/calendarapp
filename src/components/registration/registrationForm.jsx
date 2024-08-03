@@ -25,9 +25,11 @@ const submitForm = async (e) => {
   const email = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   const country = document.getElementById("initCountry").value;
+  const phone = document.getElementById("phone").value;
   const user = {
     "username": email,
     "country": country,
+    "phone": phone,
     "notifs": "text", // default notification setting
   }
   console.log(user);
@@ -86,7 +88,7 @@ const RegisterForm = () => {
           <br />
           <input type="password" id = "password" placeholder="Password (Required)" className="registrationInput" required/>
           <br />
-          <input type="tel" id="phone" placeholder="Phone Number (Required)" pattern = "[0-9]{3}-[0-9]{3}-[0-9]{4}" className="registrationInput"/>
+          <input type="tel" id="phone" placeholder="Phone Number (Required)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" className="registrationInput"/>
           <br />
           <select name="countries" id = "initCountry" required>
                 <option value="default">Select Country (Required)</option>

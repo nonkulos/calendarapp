@@ -304,6 +304,10 @@
   color: #008000;
 }
 
+.login-status {
+  text-wrap: balance;
+}
+
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
