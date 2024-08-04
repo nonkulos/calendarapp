@@ -1,6 +1,27 @@
 import handleFormSubmit from "../../client-server-stuff/submitForm";
 import { username } from "../login/loginForm";
 
+const validateEvent = () => {
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("start").value;
+    const endTime = document.getElementById("end").value;
+    const eventName = document.getElementById("eventName").value;
+
+    if(eventName=="" || date=="" || startTime=="" || endTime==""){ {
+        document.getElementById("newEventStatus").innerHTML = "Missing required fields";
+        return false;
+    }}
+    const user = {name: username};
+    fetch("http://localhost:3001/findEvents", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+    })
+    .then((res) => res.json())
+    .catch((e) => console.error(e));
+}
 const createEvent = () => {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
@@ -15,9 +36,12 @@ const createEvent = () => {
         name: eventName
     }
 }
+
 const submitForm = (e) => {
     e.preventDefault();
-    //validateEvent();
+    if(!validateEvent()){
+        return;
+    };
     const newEvent = createEvent();
     fetch("http://localhost:3001/newEvent", {
         method: "POST",

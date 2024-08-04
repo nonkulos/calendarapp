@@ -4,6 +4,7 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import addDocs from './database-stuff/add_docs.js';
 import updatePref from './database-stuff/update.js';
+import find_docs from './database-stuff/find_docs.js';
 
 const port = process.env.PORT || 3001;
 const app = express();
@@ -20,6 +21,15 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: "Hello from server!" });
     res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+app.post('/findEvents', (req, res) => {
+    const user = req.body;
+    find_docs(user, "findEvent")
+    .then((event) => {
+        console.log(event);
+        res.json(event);
+    })
 });
 
 app.post('/formSubmit', (req, res) => {
