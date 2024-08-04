@@ -30,7 +30,21 @@ app.post('/formSubmit', (req, res) => {
 app.post('/newUser', (req, res) => {
     const user = req.body;
     console.log(user);
-    addDocs(user)
+    addDocs(user, "newUser")
+    .then(() => {
+        console.log("User added to database");
+    })
+    .catch((e) => {
+        console.error(e);
+    });
+
+    res.sendStatus(201)
+});
+
+app.post('/newEvent', (req, res) => {
+    const event = req.body;
+    console.log(event);
+    addDocs(event, "newEvent")
     .then(() => {
         console.log("User added to database");
     })
