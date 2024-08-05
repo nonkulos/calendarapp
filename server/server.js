@@ -52,7 +52,6 @@ app.post('/newUser', (req, res) => {
 
 app.post('/newEvent', (req, res) => {
     const event = req.body;
-    console.log(event);
     addDocs(event, "newEvent")
     .then(() => {
         console.log("Event added to database");

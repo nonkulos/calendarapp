@@ -1,7 +1,19 @@
 import handleFormSubmit from "../../client-server-stuff/submitForm";
 import { username } from "../login/loginForm";
 
-const validateEvent = () => {
+const comparePrevEvents = (currEvents, startDate, endDate) => {
+    for(let i = 0; i < currEvents.length; i++){
+        const checkStart = new Date(`${currEvents[i].date}, ${currEvents[i].start}`)
+        const checkEnd = new Date(`${currEvents[i].date}, ${currEvents[i].end}`)
+        if((checkStart < endDate && checkStart >= startDate) || (checkEnd <= endDate && checkEnd > startDate) || (checkStart < startDate && checkEnd > endDate)){ 
+            console.log("failed")
+            document.getElementById("newEventStatus").innerHTML = "Event overlaps with previously set events.";
+            return false
+        }
+    }
+    return true
+}
+const validateEvent = async () => {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
     const endTime = document.getElementById("end").value;
@@ -11,7 +23,6 @@ const validateEvent = () => {
     const startDate = new Date(`${date}, ${startTime}`)
     const endDate = new Date(`${date}, ${endTime}`)
     
-    let currEvents;
     if(eventName=="" || date=="" || startTime=="" || endTime==""){ {
         document.getElementById("newEventStatus").innerHTML = "Missing required fields";
         return false;
@@ -31,6 +42,7 @@ const validateEvent = () => {
         name: username,
         eventDate: date
     };
+
     fetch("http://localhost:3001/findEvents", {
         method: "POST",
         headers: {
@@ -39,21 +51,19 @@ const validateEvent = () => {
         body: JSON.stringify(user),
     })
     .then((res) => {
-        currEvents = res.json()
+        res.json().then((events) => {
+            console.log(events)
+            if(!comparePrevEvents(events, startDate, endDate)){
+                console.log("failed")
+                return false
+            };
+            console.log("passed")
+            return true;
+        });
     })
     .catch((e) => console.error(e));
-    console.log(currEvents)
-    for(let i = 0; i < currEvents.length; i++){
-        const checkStart = new Date(`${currEvents[i].date}, ${currEvents[i].start}`)
-        const checkEnd = new Date(`${currEvents[i].date}, ${currEvents[i].end}`)
-        if((checkStart < endDate && checkStart >= startDate) || (checkEnd <= endDate && checkEnd > startDate) || (checkStart < startDate && checkEnd > endDate)){ 
-            console.log("passed")
-            document.getElementById("newEventStatus").innerHTML = "Event overlaps with previously set events.";
-            return false
-        }
-    }
-    return true;
 }
+
 const createEvent = () => {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
@@ -69,25 +79,27 @@ const createEvent = () => {
     }
 }
 
-const submitForm = (e) => {
+const submitForm = async (e) => {
     e.preventDefault();
-    if(!validateEvent()){
-        return;
-    };
-    const newEvent = createEvent();
-    fetch("http://localhost:3001/newEvent", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEvent),
-    })
-    .then((res) => {
-        document.getElementById("newEventStatus").innerHTML = "Event added successfully";
-    })
-    .catch((e) => {
-        document.getElementById("newEventStatus").innerHTML = "Failed to add event";
-        console.error(e)});
+    await validateEvent().then((res) => {
+        if(res){
+            console.log("passed")
+            const newEvent = createEvent();
+            fetch("http://localhost:3001/newEvent", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newEvent),
+            })
+            .then((res) => {
+                document.getElementById("newEventStatus").innerHTML = "Event added successfully";
+            })
+            .catch((e) => {
+                document.getElementById("newEventStatus").innerHTML = "Failed to add event";
+                console.error(e)});
+    }})
+    
 }
 
 const AddForm = () => {
