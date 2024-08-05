@@ -27,7 +27,6 @@ app.post('/findEvents', (req, res) => {
     const user = req.body;
     find_docs(user, "findEvent")
     .then((event) => {
-        console.log(event);
         res.json(event);
     })
 });
@@ -56,7 +55,7 @@ app.post('/newEvent', (req, res) => {
     console.log(event);
     addDocs(event, "newEvent")
     .then(() => {
-        console.log("User added to database");
+        console.log("Event added to database");
     })
     .catch((e) => {
         console.error(e);

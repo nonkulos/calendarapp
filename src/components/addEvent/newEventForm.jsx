@@ -7,11 +7,30 @@ const validateEvent = () => {
     const endTime = document.getElementById("end").value;
     const eventName = document.getElementById("eventName").value;
 
+    const currDate = new Date()
+    const startDate = new Date(`${date}, ${startTime}`)
+    const endDate = new Date(`${date}, ${endTime}`)
+    
+    let currEvents;
     if(eventName=="" || date=="" || startTime=="" || endTime==""){ {
         document.getElementById("newEventStatus").innerHTML = "Missing required fields";
         return false;
     }}
-    const user = {name: username};
+
+    if(startDate < currDate){
+        document.getElementById("newEventStatus").innerHTML = "Event date is set before current date.";
+        return false;
+    }
+
+    if(endDate < startDate){
+        document.getElementById("newEventStatus").innerHTML = "End time is set before start time.";
+        return false;
+    }
+
+    const user = {
+        name: username,
+        eventDate: date
+    };
     fetch("http://localhost:3001/findEvents", {
         method: "POST",
         headers: {
@@ -19,8 +38,21 @@ const validateEvent = () => {
         },
         body: JSON.stringify(user),
     })
-    .then((res) => res.json())
+    .then((res) => {
+        currEvents = res.json()
+    })
     .catch((e) => console.error(e));
+    console.log(currEvents)
+    for(let i = 0; i < currEvents.length; i++){
+        const checkStart = new Date(`${currEvents[i].date}, ${currEvents[i].start}`)
+        const checkEnd = new Date(`${currEvents[i].date}, ${currEvents[i].end}`)
+        if((checkStart < endDate && checkStart >= startDate) || (checkEnd <= endDate && checkEnd > startDate) || (checkStart < startDate && checkEnd > endDate)){ 
+            console.log("passed")
+            document.getElementById("newEventStatus").innerHTML = "Event overlaps with previously set events.";
+            return false
+        }
+    }
+    return true;
 }
 const createEvent = () => {
     const date = document.getElementById("date").value;

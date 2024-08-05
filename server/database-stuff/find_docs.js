@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({path: '../server/config.env'});
 
-const find_docs = async (user, purpose) => {
+const find_docs = async (query, purpose) => {
     const uri = process.env.MONGODB_CONNECTION_URI;
     const client = new MongoClient(uri);
     try {
@@ -12,8 +12,7 @@ const find_docs = async (user, purpose) => {
 
         switch(purpose) {
             case "findEvent":
-                const events = await client.db("CalendarAppDatabase").collection('eventdata').find().toArray();
-                console.log(events)
+                const events = await client.db("CalendarAppDatabase").collection('eventdata').find({username: query.name, date: query.eventDate}).toArray();
                 return events;
             default:
                 console.log("No purpose specified");
