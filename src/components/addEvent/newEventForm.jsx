@@ -1,6 +1,7 @@
 import handleFormSubmit from "../../client-server-stuff/submitForm";
 import { username } from "../login/loginForm";
 
+
 const comparePrevEvents = (currEvents, startDate, endDate) => {
     for(let i = 0; i < currEvents.length; i++){
         const checkStart = new Date(`${currEvents[i].date}, ${currEvents[i].start}`)
@@ -13,6 +14,28 @@ const comparePrevEvents = (currEvents, startDate, endDate) => {
     }
     return true
 }
+
+const fetchEvents = async () => {
+    const date = document.getElementById("date").value;
+    let result;
+    const user = {
+        name: username,
+        eventDate: date
+    };
+    await fetch("http://localhost:3001/findEvents", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+    })
+    .then((res) => {
+        result = res.json();
+    })
+    .catch((e) => console.error(e));
+    return result;
+}
+
 const validateEvent = async () => {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
@@ -37,31 +60,6 @@ const validateEvent = async () => {
         document.getElementById("newEventStatus").innerHTML = "End time is set before start time.";
         return false;
     }
-
-    const user = {
-        name: username,
-        eventDate: date
-    };
-
-    fetch("http://localhost:3001/findEvents", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-    })
-    .then((res) => {
-        res.json().then((events) => {
-            console.log(events)
-            if(!comparePrevEvents(events, startDate, endDate)){
-                console.log("failed")
-                return false
-            };
-            console.log("passed")
-            return true;
-        });
-    })
-    .catch((e) => console.error(e));
 }
 
 const createEvent = () => {
@@ -80,26 +78,41 @@ const createEvent = () => {
 }
 
 const submitForm = async (e) => {
-    e.preventDefault();
-    await validateEvent().then((res) => {
-        if(res){
-            console.log("passed")
-            const newEvent = createEvent();
-            fetch("http://localhost:3001/newEvent", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newEvent),
-            })
-            .then((res) => {
-                document.getElementById("newEventStatus").innerHTML = "Event added successfully";
-            })
-            .catch((e) => {
-                document.getElementById("newEventStatus").innerHTML = "Failed to add event";
-                console.error(e)});
-    }})
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("start").value;
+    const endTime = document.getElementById("end").value;
+    const startDate = new Date(`${date}, ${startTime}`)
+    const endDate = new Date(`${date}, ${endTime}`)
     
+    e.preventDefault();
+    console.log("start")
+    if(!validateEvent()){
+        return;
+    };
+    const passed = await fetchEvents().then(
+        (res) => {
+            console.log(res)
+            return(comparePrevEvents(res, startDate, endDate));
+        }
+    )
+    console.log(passed)
+    if(passed){
+        const newEvent = createEvent();
+        fetch("http://localhost:3001/newEvent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newEvent),
+        })
+        .then((res) => {
+            console.log("Done")
+            document.getElementById("newEventStatus").innerHTML = "Event added successfully";
+        })
+        .catch((e) => {
+            document.getElementById("newEventStatus").innerHTML = "Failed to add event";
+            console.error(e)});
+    }
 }
 
 const AddForm = () => {
