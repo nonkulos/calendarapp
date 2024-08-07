@@ -32,3 +32,4 @@ yarn-error.log*
 *.sass.map
 *.scss.map
 .env
+server/config.env
