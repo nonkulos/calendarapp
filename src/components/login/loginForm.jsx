@@ -2,12 +2,12 @@ import {useState} from "react";
 import * as Realm from "realm-web";
 
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
-let username = null;
+let usersettings = null;
 
 const UserDetail = ({ user, setUser }) => {
     const logout = async () => {
         setUser(null);
-        username=null;
+        usersettings=null;
         const user = await app.currentUser?.logOut();
     }
     return (
@@ -20,20 +20,28 @@ const UserDetail = ({ user, setUser }) => {
 
 function Login({ user, setUser }) {
     const loginEmail = async (e) => {
-        console.log(username);
+        console.log(usersettings);
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const credentials = Realm.Credentials.emailPassword(email, password);
         try {
             const user = await app.logIn(credentials);
-            username = user.profile.email;
+            const userSettings = fetch("http://localhost:3001/findSettings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({user: email})
+            }).then((res) => {
+                usersettings = res.json();
+                return usersettings;
+            });
             setUser(user);
         } catch (error) {
             document.getElementById("loginStatus").textContent = "Invalid username or password";
         }
     }
-    
 
     return (
         <div>
@@ -67,4 +75,4 @@ const LoginForm = () => {
         
     )
 }
-export {LoginForm, username};
+export {LoginForm, usersettings};

@@ -14,6 +14,9 @@ const find_docs = async (query, purpose) => {
             case "findEvent":
                 const events = await client.db("CalendarAppDatabase").collection('eventdata').find({username: query.name, date: query.eventDate}).toArray();
                 return events;
+            case "findSettings":
+                const settings = await client.db("CalendarAppDatabase").collection('userdata').find({username: query.user}).toArray();
+                return settings;
             default:
                 console.log("No purpose specified");
         }

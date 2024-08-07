@@ -1,5 +1,5 @@
 import handleFormSubmit from "../../client-server-stuff/submitForm";
-import { username } from "../login/loginForm";
+import { usersettings } from "../login/loginForm";
 
 
 const comparePrevEvents = (currEvents, startDate, endDate) => {
@@ -19,7 +19,7 @@ const fetchEvents = async () => {
     const date = document.getElementById("date").value;
     let result;
     const user = {
-        name: username,
+        name: usersettings.username,
         eventDate: date
     };
     await fetch("http://localhost:3001/findEvents", {
@@ -46,7 +46,7 @@ const validateEvent = () => {
     const startDate = new Date(`${date}, ${startTime}`)
     const endDate = new Date(`${date}, ${endTime}`)
     
-    if(username == null){
+    if(usersettings.username == null){
         document.getElementById("newEventStatus").innerHTML = "Please log in to add events";
         return false;
     }
@@ -74,7 +74,7 @@ const createEvent = () => {
     const eventName = document.getElementById("eventName").value;
 
     return {
-        username: username,
+        username: usersettings.username,
         date: date,
         start: startTime,
         end: endTime,
@@ -148,7 +148,7 @@ const AddForm = () => {
             <br />
             <p id="newEventStatus" className="failed"></p>
 
-            <div className="login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
+            <div className="login-status">{usersettings != null ? <p>Currently logged in as {usersettings.username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }

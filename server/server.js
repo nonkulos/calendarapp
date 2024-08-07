@@ -31,6 +31,14 @@ app.post('/findEvents', (req, res) => {
     })
 });
 
+app.post('/findSettings', (req, res) => {
+    const user = req.body;
+    find_docs(user, "findSettings")
+    .then((settings) => {
+        res.json(settings);
+    })
+});
+
 app.post('/formSubmit', (req, res) => {
     console.log("post request received");
     res.sendStatus(201)

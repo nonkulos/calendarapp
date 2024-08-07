@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {username} from "../login/loginForm";
+import {usersettings} from "../login/loginForm";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
@@ -34,7 +34,7 @@ const makePref = () =>{
         notifPref = "none";
     }
     const newPref = {
-        username: username,
+        username: usersettings.username,
         country: newCountry,
         phone: newPhone,
         notifs: notifPref
@@ -77,6 +77,7 @@ const submitForm = (e) => {
 const SettingsForm = () => {
     const [loaded, setLoaded] = useState(false);
     const [user, setUser] = useState(null);
+    console.log(usersettings);
     fetchCountries().then((data) => 
         {
             countries = data;
@@ -112,7 +113,7 @@ const SettingsForm = () => {
             <br />
 
             <p id="settingStatus" className="failed"></p>
-            <div className = "login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
+            <div className = "login-status">{usersettings != null ? <p>Currently logged in as {usersettings.username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }
