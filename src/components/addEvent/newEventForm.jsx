@@ -36,7 +36,7 @@ const fetchEvents = async () => {
     return result;
 }
 
-const validateEvent = async () => {
+const validateEvent = () => {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
     const endTime = document.getElementById("end").value;
@@ -46,6 +46,11 @@ const validateEvent = async () => {
     const startDate = new Date(`${date}, ${startTime}`)
     const endDate = new Date(`${date}, ${endTime}`)
     
+    if(username == null){
+        document.getElementById("newEventStatus").innerHTML = "Please log in to add events";
+        return false;
+    }
+
     if(eventName=="" || date=="" || startTime=="" || endTime==""){ {
         document.getElementById("newEventStatus").innerHTML = "Missing required fields";
         return false;
@@ -78,6 +83,9 @@ const createEvent = () => {
 }
 
 const submitForm = async (e) => {
+    document.getElementById("newEventStatus").innerHTML = "";
+    document.getElementById("newEventStatus").classList.remove("success");
+    document.getElementById("newEventStatus").classList.add("failed");
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
     const endTime = document.getElementById("end").value;
@@ -87,6 +95,7 @@ const submitForm = async (e) => {
     e.preventDefault();
     console.log("start")
     if(!validateEvent()){
+        console.log("stopping")
         return;
     };
     const passed = await fetchEvents().then(
@@ -107,6 +116,8 @@ const submitForm = async (e) => {
         })
         .then((res) => {
             console.log("Done")
+            document.getElementById("newEventStatus").classList.remove("failed");
+            document.getElementById("newEventStatus").classList.add("success");
             document.getElementById("newEventStatus").innerHTML = "Event added successfully";
         })
         .catch((e) => {
@@ -135,7 +146,7 @@ const AddForm = () => {
 
             <button className="input-button" onClick={submitForm}>Save</button>
             <br />
-            <p id="newEventStatus"></p>
+            <p id="newEventStatus" className="failed"></p>
 
             <div className="login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
