@@ -27,14 +27,14 @@ function UserDetail({ user }) {
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
 
 const Homepage = () => {
-    const [user, setUser] = React.useState(app.currentUser);
+    const [user, setUser] = React.useState(null);
     const [message, setMessage] = useState("");
-
+    /*
     useEffect(() => {
-    fetch("https://localhost:3001")
-        .then((res) => res.json())
-        .then((data) => setMessage(data.message));
-    }, []);
+      fetch("https://localhost:3001")
+          .then((res) => res.json())
+          .then((data) => setMessage(data.message));
+    }, []);*/
 
     return (
         <>

@@ -1,46 +1,82 @@
 import {useState, useEffect} from "react";
-import * as Realm from "realm-web";
 import {username} from "../login/loginForm";
-//import connect from "../../../server/database-stuff/connect.js";
 
 import handleFormSubmit from "../../client-server-stuff/submitForm.js";
 import {fetchCountries, fetchHolidays} from "../../client-server-stuff/fetchStuff.js";
-//import addDocs from "../../../server/database-stuff/add_docs.js";
 
 let countries = [];
 
-const logOut = async () => {
-    const user = await app.currentUser?.logOut();
-    setUser(null);
+const validateInfo = (country, phone) => {
+    if (country === "default") {
+        document.getElementById("settingStatus").innerHTML = "Please select a valid country";
+        return false;
+    }
+    if (phone === "") {
+        document.getElementById("settingStatus").innerHTML = "Please enter a valid phone number";
+        return false;
+    }
+    return true;
 }
 
-const app = new Realm.App({ id: "calendar-database-cusojoa" });
-
-const UserDetail = ({ user }) => {
-    return (
-        <div>
-          <small>
-          Logged in with anonymous id: {user.id}<br />
-            <button onClick = {logOut}>Log out</button>
-          </small>
-        </div>
-    );
+const makePref = () =>{
+    const newCountry = document.getElementById("updateCountry").value;
+    const newPhone = document.getElementById("phone").value;
+    const email = document.getElementById("e-mail").checked;
+    const text = document.getElementById("text").checked;
+    let notifPref;
+    if(email && text){
+        notifPref = "both";
+    } else if(email){
+        notifPref = "email";
+    } else if(text){
+        notifPref = "text";
+    } else {
+        notifPref = "none";
+    }
+    const newPref = {
+        username: username,
+        country: newCountry,
+        phone: newPhone,
+        notifs: notifPref
+    }
+    return newPref;
 }
-
 
 const submitForm = (e) => {
-    const connection = connect();
+    document.getElementById("settingStatus").innerHTML = "";
+    document.getElementById("settingStatus").classList.remove("success");
+    document.getElementById("settingStatus").classList.add("failed");
+    const newCountry = document.getElementById("updateCountry").value;
+    const newPhone = document.getElementById("phone").value;
     const currYear = document.getElementById("currMonth").innerHTML.slice(-4);
     console.log(currYear);
     e.preventDefault();
-    fetchHolidays(document.getElementById("country").value, 2024).then((data) => console.log(data));
-    handleFormSubmit(e, "settingStatus", "Settings Saved");
-    addDocs();
+    if (validateInfo(newCountry, newPhone)) {
+        const newPref = makePref();
+        fetch("http://localhost:3001/updatePref", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPref)
+        })
+        .then((res) => {
+            if (res.ok) {
+                document.getElementById("settingStatus").classList.remove("failed");
+                document.getElementById("settingStatus").classList.add("success");
+                document.getElementById("settingStatus").innerHTML = "Preferences updated";
+            }
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+    }
+    //fetchHolidays(document.getElementById("updateCountry").value, 2024).then((data) => console.log(data));
 }
 
 const SettingsForm = () => {
     const [loaded, setLoaded] = useState(false);
-    const [user, setUser] = useState(app.currentUser);
+    const [user, setUser] = useState(null);
     fetchCountries().then((data) => 
         {
             countries = data;
@@ -66,14 +102,17 @@ const SettingsForm = () => {
             <input id = "text" type = "checkbox" />
             <label for = "text">Text</label>
 
+            <p>Edit Phone Number: </p>
+            <input  id = "phone" className = "widebar-input" type = "tel" />
+
             <br />
             <br />
 
-            <input type="submit" value="Save Changes" onClick={submitForm}/>
+            <button className="input-button" onClick={submitForm}>Save Changes</button>
             <br />
 
-            <p id="settingStatus"></p>
-            <div>{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
+            <p id="settingStatus" className="failed"></p>
+            <div className = "login-status">{username != null ? <p>Currently logged in as {username}</p> : <p>Currently logged in as guest</p>}</div>
         </form>
     )
 }

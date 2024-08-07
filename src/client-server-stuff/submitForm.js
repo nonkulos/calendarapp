@@ -1,6 +1,6 @@
 const handleFormSubmit = (e, statusElement, msg) => {
     const status = document.getElementById(statusElement);
-    fetch("https://localhost:3001", {method: "POST"})
+    fetch("http://localhost:3001/formSubmit", {method: "POST"})
         .then(function(res){
             if(res.ok){
                 console.log("successfully posted data");
@@ -17,7 +17,7 @@ const handleFormSubmit = (e, statusElement, msg) => {
         .catch(function(res){
             status.classList.remove("success");
             status.classList.add("failed");
-            console.log("failed to post data");
+            console.log(res);
             status.innerHTML = "Failed to post data";
         })
 };

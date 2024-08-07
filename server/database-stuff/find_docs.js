@@ -1,22 +1,19 @@
-import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
 dotenv.config({path: '../server/config.env'});
 
-async function addDocs(doc, purpose) {
+const find_docs = async (query, purpose) => {
     const uri = process.env.MONGODB_CONNECTION_URI;
     const client = new MongoClient(uri);
-    try{
+    try {
         await client.connect();
         console.log("Connected to MongoDB");
 
         switch(purpose) {
-            case "newUser":
-                await client.db("CalendarAppDatabase").collection('userdata').insertOne(doc);
-                break;
-            case "newEvent":
-                await client.db("CalendarAppDatabase").collection('eventdata').insertOne(doc);
-                break;
+            case "findEvent":
+                const events = await client.db("CalendarAppDatabase").collection('eventdata').find({username: query.name, date: query.eventDate}).toArray();
+                return events;
             default:
                 console.log("No purpose specified");
         }
@@ -27,4 +24,4 @@ async function addDocs(doc, purpose) {
     }
 }
 
-export default addDocs;
+export default find_docs;

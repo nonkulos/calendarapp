@@ -2,24 +2,25 @@ import {useState} from "react";
 import * as Realm from "realm-web";
 
 const app = new Realm.App({ id: "calendar-database-cusojoa" });
-let username = "c";
+let username = null;
 
 const UserDetail = ({ user, setUser }) => {
     const logout = async () => {
         setUser(null);
-        username = null;
+        username=null;
         const user = await app.currentUser?.logOut();
     }
     return (
         <>
           <p>Currently logged in as {user.profile.email}</p>
-          <input type="submit" value="Log Out" onClick={logout} />
+          <button className="input-button" onClick={logout}>Log Out</button>
         </>
     );
 }
 
 function Login({ user, setUser }) {
     const loginEmail = async (e) => {
+        console.log(username);
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -44,7 +45,7 @@ function Login({ user, setUser }) {
             <p>Password:</p>   
             <input type="password" id="password" required className="widebar-input"/>
             <br />
-            <input value="Log In" type="submit" onClick={loginEmail} />
+            <button className="input-button" onClick={loginEmail}>Log In</button>
             </form>
             
             <p id="loginStatus" className="failed"></p>

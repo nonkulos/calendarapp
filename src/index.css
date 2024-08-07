@@ -288,7 +288,7 @@
   font-family: "Kanit";
 }
 
-input[type=submit] {
+.input-button {
   border-radius: 10px;
   border: 1px solid black;
   padding: 0.5vh;
@@ -302,6 +302,10 @@ input[type=submit] {
 
 .status {
   color: #008000;
+}
+
+.login-status {
+  overflow-wrap: break-word;
 }
 
 .kanit-light {

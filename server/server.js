@@ -1,13 +1,16 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import cors from "cors";
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+import addDocs from './database-stuff/add_docs.js';
+import updatePref from './database-stuff/update.js';
+import find_docs from './database-stuff/find_docs.js';
 
 const port = process.env.PORT || 3001;
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(filename);
 
 const publicPath = path.join(__dirname, '..', 'public'); // this path expects that you put the server file inside of a folder, such as server. If you want to make it in the top level directory, get rid of '..'
 app.use(express.static(publicPath));
@@ -20,12 +23,61 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
 
+app.post('/findEvents', (req, res) => {
+    const user = req.body;
+    find_docs(user, "findEvent")
+    .then((event) => {
+        res.json(event);
+    })
+});
+
 app.post('/formSubmit', (req, res) => {
     console.log("post request received");
     res.sendStatus(201)
 });
 
-app.listen(3001, "0.0.0.0", () => {
-    console.log(`Server is running on port 3001.`);
-  });
+app.post('/newUser', (req, res) => {
+    const user = req.body;
+    console.log(user);
+    addDocs(user, "newUser")
+    .then(() => {
+        console.log("User added to database");
+    })
+    .catch((e) => {
+        console.error(e);
+    });
+
+    res.sendStatus(201)
+});
+
+app.post('/newEvent', (req, res) => {
+    const event = req.body;
+    addDocs(event, "newEvent")
+    .then(() => {
+        console.log("Event added to database");
+    })
+    .catch((e) => {
+        console.error(e);
+    });
+
+    res.sendStatus(201)
+});
+
+app.post('/updatePref', (req, res) => {
+    const newPref = req.body;
+    updatePref(newPref.username, newPref)
+    .then(() => {
+        console.log("Preferences updated");
+        res.sendStatus(201)
+    })
+    .catch((e) => {
+        console.error(e);
+        res.sendStatus(500)
+    });
+
+});
+
+app.listen(port, () => {
+    console.log(`Server is running.`);
+});
 
