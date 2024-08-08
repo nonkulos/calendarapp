@@ -2,9 +2,9 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import addDocs from './database-stuff/add_docs.js';
-import updatePref from './database-stuff/update.js';
-import find_docs from './database-stuff/find_docs.js';
+import addDocs from './database-stuff/add_docs.mjs';
+import updatePref from './database-stuff/update.mjs';
+import find_docs from './database-stuff/find_docs.mjs';
 
 const port = process.env.PORT || 3001;
 const app = express();

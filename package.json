@@ -8,11 +8,13 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "calendarapp": "file:",
     "express": "^4.19.2",
     "express-generator": "^4.16.1",
     "gh-pages": "^6.1.1",
     "googleapis": "^105.0.0",
     "mongodb": "^6.8.0",
+    "nodemon": "^3.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
@@ -22,12 +24,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "link-server": "node_modules/.bin/symlink-dir ../server src/server",
-    "postinstall": "npm run link-server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "node-start": "node server/server.mjs",
+    "dev": "nodemon server/server.mjs"
   },
   "browserslist": {
     "production": [

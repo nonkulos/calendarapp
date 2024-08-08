@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+/*const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
@@ -16,7 +16,7 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
  * Reads previously authorized credentials from the save file.
  *
  * @return {Promise<OAuth2Client|null>}
- */
+ *//*
 async function loadSavedCredentialsIfExist() {
   try {
     const content = await fs.readFile(TOKEN_PATH);
@@ -32,7 +32,7 @@ async function loadSavedCredentialsIfExist() {
  *
  * @param {OAuth2Client} client
  * @return {Promise<void>}
- */
+ *//*
 async function saveCredentials(client) {
   const content = await fs.readFile(CREDENTIALS_PATH);
   const keys = JSON.parse(content);
@@ -49,7 +49,7 @@ async function saveCredentials(client) {
 /**
  * Load or request or authorization to call APIs.
  *
- */
+ *//*
 async function authorize() {
   let client = await loadSavedCredentialsIfExist();
   if (client) {
@@ -68,7 +68,7 @@ async function authorize() {
 /**
  * Lists the next 10 events on the user's primary calendar.
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
+ *//*
 async function listEvents(auth) {
   const calendar = google.calendar({version: 'v3', auth});
   const res = await calendar.events.list({
@@ -90,4 +90,4 @@ async function listEvents(auth) {
   });
 }
 
-authorize().then(listEvents).catch(console.error);
+authorize().then(listEvents).catch(console.error);*/
